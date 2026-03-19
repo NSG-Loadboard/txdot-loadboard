@@ -51,7 +51,88 @@ table.cal{width:100%;border-collapse:collapse;table-layout:fixed}
 <div id="app"></div>
 <script>
 "use strict";
-const DATA=[{"account":"TxDOT Odessa District","location":"Crane","orderNbr":"WO0002099","product":"Road Salt ASTM Type I Bulk","orderedQty":8,"shipments":0,"shipmentsRemaining":8,"requiredBy":"2026-01-28","terminal":"KRESS, TX"},{"account":"TxDOT El Paso District","location":"West El Paso MO - El Paso, TX","orderNbr":"WO0003871","product":"Brine Salt Type II Bulk","orderedQty":4,"shipments":0,"shipmentsRemaining":4,"requiredBy":"2026-03-19","terminal":"KRESS, TX"},{"account":"TxDOT Odessa District","location":"Sanderson","orderNbr":"WO0003854","product":"Road Salt ASTM Type I Bulk","orderedQty":4,"shipments":0,"shipmentsRemaining":4,"requiredBy":"2026-02-12","terminal":"KRESS, TX"},{"account":"TxDOT Odessa District","location":"Iraan","orderNbr":"WO0003851","product":"Ice Slicer Elite Supersack 2500#","orderedQty":1,"shipments":0,"shipmentsRemaining":1,"requiredBy":"2026-02-12","terminal":"KRESS, TX"},{"account":"TxDOT Odessa District","location":"Reeves Station","orderNbr":"WO0003845","product":"Road Salt ASTM Type I Bulk","orderedQty":16,"shipments":0,"shipmentsRemaining":16,"requiredBy":"2026-02-12","terminal":"KRESS, TX"},{"account":"TxDOT Odessa District","location":"Pecos Main Office","orderNbr":"WO0003839","product":"Road Salt ASTM Type I Bulk","orderedQty":10,"shipments":0,"shipmentsRemaining":10,"requiredBy":"2026-02-12","terminal":"KRESS, TX"},{"account":"TxDOT Odessa District","location":"McCamey","orderNbr":"WO0003830","product":"Ice Slicer Elite Supersack 2500#","orderedQty":3,"shipments":0,"shipmentsRemaining":3,"requiredBy":"2026-02-12","terminal":"KRESS, TX"},{"account":"TxDOT Odessa District","location":"Crane","orderNbr":"WO0001979","product":"Ice Slicer Elite Supersack 2500#","orderedQty":1,"shipments":0,"shipmentsRemaining":1,"requiredBy":"2026-01-28","terminal":"KRESS, TX"},{"account":"TxDOT Odessa District","location":"Odessa","orderNbr":"WO0003824","product":"Ice Slicer Elite Bulk","orderedQty":6,"shipments":0,"shipmentsRemaining":6,"requiredBy":"2026-02-12","terminal":"KRESS, TX"},{"account":"TxDOT Odessa District","location":"Andrews","orderNbr":"WO0003827","product":"Ice Slicer Elite Supersack 2500#","orderedQty":2,"shipments":0,"shipmentsRemaining":2,"requiredBy":"2026-02-12","terminal":"KRESS, TX"},{"account":"TxDOT Wichita Falls District","location":"Seymour","orderNbr":"WO0003655","product":"Brine Salt Type II Supersack 2000#","orderedQty":2,"shipments":0,"shipmentsRemaining":2,"requiredBy":"2026-02-12","terminal":"KRESS, TX"},{"account":"TxDOT Wichita Falls District","location":"Wichita Falls","orderNbr":"WO0003701","product":"Brine Salt Type II Bulk","orderedQty":9,"shipments":0,"shipmentsRemaining":9,"requiredBy":"2026-02-11","terminal":"KRESS, TX"},{"account":"TxDOT San Angelo District","location":"4502 Knickerbocker Rd, San Angelo","orderNbr":"WO0002063","product":"Road Salt ASTM Type I Supersack 2500#","orderedQty":3,"shipments":0,"shipmentsRemaining":3,"requiredBy":"2026-01-26","terminal":"CLEBURNE, TX"},{"account":"TxDOT Dallas District","location":"2205 S SH 5, McKinney","orderNbr":"WO0002068","product":"Brine Salt Type II Supersack 2000#","orderedQty":10,"shipments":0,"shipmentsRemaining":10,"requiredBy":"2026-01-27","terminal":"CLEBURNE, TX"},{"account":"TxDOT Waco District","location":"Hill Co. MO - 1400 S Abbott Ave, Hillsboro","orderNbr":"WO0002075","product":"Road Salt ASTM Type I Supersack 2000#","orderedQty":2,"shipments":0,"shipmentsRemaining":2,"requiredBy":"2026-02-02","terminal":"CLEBURNE, TX"},{"account":"TxDOT Paris District","location":"Grayson Co. - Sherman, TX","orderNbr":"WO0002094","product":"Brine Salt Type II Bulk","orderedQty":4,"shipments":0,"shipmentsRemaining":4,"requiredBy":"2026-02-16","terminal":"CLEBURNE, TX"},{"account":"TxDOT Waco District","location":"McLennan Co. MO - 7479 Bagby Ave, Waco","orderNbr":"WO0002104","product":"Brine Salt Type II Supersack 2000#","orderedQty":3,"shipments":0,"shipmentsRemaining":3,"requiredBy":"2026-02-02","terminal":"CLEBURNE, TX"},{"account":"TxDOT Dallas District","location":"2000 S Kaufman St, Ennis","orderNbr":"WO0002123","product":"Brine Salt Type II Supersack 2000#","orderedQty":0,"shipments":0,"shipmentsRemaining":0,"requiredBy":"2026-01-29","terminal":"CLEBURNE, TX"},{"account":"TxDOT Waco District","location":"Falls Co. MO - 5092 Hwy 7 East, Marlin","orderNbr":"WO0002128","product":"Brine Salt Type II Supersack 2000#","orderedQty":0,"shipments":0,"shipmentsRemaining":0,"requiredBy":"2026-02-02","terminal":"CLEBURNE, TX"},{"account":"TxDOT Paris District","location":"Hopkins Co. - Sulphur Springs","orderNbr":"WO0002260","product":"Brine Salt Type II Bulk","orderedQty":10,"shipments":0,"shipmentsRemaining":10,"requiredBy":"2026-02-15","terminal":"CLEBURNE, TX"},{"account":"TxDOT Dallas District","location":"2624 W Prairie St, Denton","orderNbr":"WO0002333","product":"Road Salt ASTM Type I Bulk","orderedQty":4,"shipments":0,"shipmentsRemaining":4,"requiredBy":"2026-02-04","terminal":"CLEBURNE, TX"},{"account":"TxDOT Paris District","location":"Fannin Co. - Bonham","orderNbr":"WO0002365","product":"Brine Salt Type II Bulk","orderedQty":8,"shipments":0,"shipmentsRemaining":8,"requiredBy":"2026-01-27","terminal":"CLEBURNE, TX"},{"account":"TxDOT San Angelo District","location":"2126 N Main, Junction","orderNbr":"WO0002054","product":"Ice Slicer Elite Supersack 2000#","orderedQty":4,"shipments":0,"shipmentsRemaining":4,"requiredBy":"2026-02-07","terminal":"CLEBURNE, TX"},{"account":"TxDOT Dallas District","location":"2205 S SH 5, McKinney","orderNbr":"WO0001565","product":"Brine Salt Type II Supersack 2000#","orderedQty":4,"shipments":0,"shipmentsRemaining":4,"requiredBy":"2026-01-27","terminal":"CLEBURNE, TX"},{"account":"TxDOT San Angelo District","location":"913 N US 83, Leakey","orderNbr":"WO0001723","product":"Brine Solution","orderedQty":2,"shipments":0,"shipmentsRemaining":2,"requiredBy":"2026-02-05","terminal":"CLEBURNE, TX"},{"account":"TxDOT Wichita Falls District","location":"Nocona","orderNbr":"WO0001761","product":"Brine Salt Type II Bulk","orderedQty":1,"shipments":0,"shipmentsRemaining":1,"requiredBy":"2026-01-22","terminal":"CLEBURNE, TX"},{"account":"TxDOT Fort Worth District","location":"Saginaw MO - 508 S Blue Mound Rd, Saginaw","orderNbr":"WO0001885","product":"Brine Salt Type II Supersack 2000#","orderedQty":3,"shipments":0,"shipmentsRemaining":3,"requiredBy":"2026-02-04","terminal":"CLEBURNE, TX"},{"account":"TxDOT Dallas District","location":"2624 W Prairie St, Denton","orderNbr":"WO0001923","product":"Road Salt ASTM Type I Bulk","orderedQty":4,"shipments":0,"shipmentsRemaining":4,"requiredBy":"2026-01-24","terminal":"CLEBURNE, TX"},{"account":"TxDOT Dallas District","location":"3260 FM 2728, Kaufman","orderNbr":"WO0002014","product":"Brine Salt Type II Supersack 2000#","orderedQty":3,"shipments":0,"shipmentsRemaining":3,"requiredBy":"2026-01-30","terminal":"CLEBURNE, TX"},{"account":"TxDOT Dallas District","location":"100 SW County Rd 1000, Corsicana","orderNbr":"WO0002045","product":"Brine Salt Type II Supersack 2000#","orderedQty":5,"shipments":0,"shipmentsRemaining":5,"requiredBy":"2026-01-30","terminal":"CLEBURNE, TX"},{"account":"TxDOT Waco District","location":"Bosque Co. MO - 9167 SH 6 South, Meridian","orderNbr":"WO0002455","product":"Brine Salt Type II Supersack 2000#","orderedQty":5,"shipments":0,"shipmentsRemaining":5,"requiredBy":"2026-02-03","terminal":"CLEBURNE, TX"},{"account":"TxDOT Waco District","location":"Hamilton Co. MO - 1301 East Main, Hamilton","orderNbr":"WO0002527","product":"Road Salt ASTM Type I Supersack 2000#","orderedQty":2,"shipments":0,"shipmentsRemaining":2,"requiredBy":"2026-02-03","terminal":"CLEBURNE, TX"},{"account":"TxDOT Waco District","location":"Bell Co. MO - 410 West Loop 121, Belton","orderNbr":"WO0003413","product":"Road Salt ASTM Type I Bulk","orderedQty":20,"shipments":0,"shipmentsRemaining":20,"requiredBy":"2026-02-13","terminal":"CLEBURNE, TX"},{"account":"TxDOT Wichita Falls District","location":"Bowie","orderNbr":"WO0003430","product":"Road Salt ASTM Type I Bulk","orderedQty":6,"shipments":0,"shipmentsRemaining":6,"requiredBy":"2026-02-09","terminal":"CLEBURNE, TX"},{"account":"TxDOT Paris District","location":"Grayson Co. - Sherman, TX","orderNbr":"WO0003523","product":"Ice Slicer Elite Supersack 2000#","orderedQty":1,"shipments":0,"shipmentsRemaining":1,"requiredBy":"2026-02-25","terminal":"CLEBURNE, TX"},{"account":"TxDOT Fort Worth District","location":"Saginaw MO - 508 S Blue Mound Rd, Saginaw","orderNbr":"WO0003555","product":"Brine Salt Type II Supersack 2000#","orderedQty":2,"shipments":0,"shipmentsRemaining":2,"requiredBy":"2026-02-17","terminal":"CLEBURNE, TX"},{"account":"TxDOT Bryan District","location":"Robertson County MO - Hearne, TX","orderNbr":"WO0003705","product":"Brine Salt Type II Supersack 2000#","orderedQty":1,"shipments":0,"shipmentsRemaining":1,"requiredBy":"2026-02-26","terminal":"CLEBURNE, TX"},{"account":"TxDOT Bryan District","location":"Brazos County MO - Bryan, TX","orderNbr":"WO0003757","product":"Ice Slicer Elite Supersack 2000#","orderedQty":1,"shipments":0,"shipmentsRemaining":1,"requiredBy":"2026-02-26","terminal":"CLEBURNE, TX"},{"account":"TxDOT Bryan District","location":"Grimes County MO - Navasota, TX","orderNbr":"WO0003762","product":"Ice Slicer Elite Supersack 2000#","orderedQty":1,"shipments":0,"shipmentsRemaining":1,"requiredBy":"2026-02-26","terminal":"CLEBURNE, TX"},{"account":"TxDOT Bryan District","location":"Robertson County MO - Hearne, TX","orderNbr":"WO0003769","product":"Ice Slicer Elite Bag 50#","orderedQty":1,"shipments":0,"shipmentsRemaining":1,"requiredBy":"2026-02-26","terminal":"CLEBURNE, TX"},{"account":"TxDOT Waco District","location":"TxDOT Special Job - 3119 Gholson Rd, Waco","orderNbr":"WO0003406","product":"Road Salt ASTM Type I Supersack 2000#","orderedQty":18,"shipments":0,"shipmentsRemaining":18,"requiredBy":"2026-02-13","terminal":"CLEBURNE, TX"},{"account":"TxDOT Bryan District","location":"Madison County MO - Madisonville, TX","orderNbr":"WO0003791","product":"Ice Slicer Elite Bag 50#","orderedQty":1,"shipments":0,"shipmentsRemaining":1,"requiredBy":"2026-03-02","terminal":"CLEBURNE, TX"},{"account":"TxDOT Bryan District","location":"Freestone County MO - Fairfield, TX","orderNbr":"WO0003798","product":"Brine Salt Type II Supersack 2000#","orderedQty":2,"shipments":0,"shipmentsRemaining":2,"requiredBy":"2026-03-05","terminal":"CLEBURNE, TX"},{"account":"TxDOT Bryan District","location":"Leon County MO - Buffalo, TX","orderNbr":"WO0003802","product":"Brine Salt Type II Supersack 2000#","orderedQty":2,"shipments":0,"shipmentsRemaining":2,"requiredBy":"2026-03-05","terminal":"CLEBURNE, TX"},{"account":"TxDOT Paris District","location":"Red River Co. - Clarksville","orderNbr":"WO0003811","product":"Road Salt ASTM Type I Bulk","orderedQty":2,"shipments":0,"shipmentsRemaining":2,"requiredBy":"2026-02-27","terminal":"CLEBURNE, TX"},{"account":"TxDOT El Paso District","location":"Fort Davis MO - Fort Davis, TX","orderNbr":"WO0003866","product":"Brine Solution","orderedQty":1,"shipments":0,"shipmentsRemaining":1,"requiredBy":"2026-03-10","terminal":"CLEBURNE, TX"},{"account":"TxDOT - North East Region","location":"Canton Salt Shed","orderNbr":"WO0003880","product":"Brine Salt Type II Bulk","orderedQty":16,"shipments":0,"shipmentsRemaining":16,"requiredBy":"2026-04-02","terminal":"CLEBURNE, TX"},{"account":"TxDOT Fort Worth District","location":"South Tarrant MO - 2540 Edgecliff Rd, Fort Worth","orderNbr":"WO0003892","product":"Road Salt ASTM Type I Bulk","orderedQty":8,"shipments":0,"shipmentsRemaining":8,"requiredBy":"2026-03-12","terminal":"CLEBURNE, TX"},{"account":"TxDOT Bryan District","location":"Freestone County MO - Fairfield, TX","orderNbr":"WO0003780","product":"Ice Slicer Elite Bag 50#","orderedQty":1,"shipments":0,"shipmentsRemaining":1,"requiredBy":"2026-03-02","terminal":"CLEBURNE, TX"},{"account":"TxDOT Paris District","location":"Rains Co. - Emory","orderNbr":"WO0003368","product":"Road Salt ASTM Type I Bulk","orderedQty":2,"shipments":0,"shipmentsRemaining":2,"requiredBy":"2026-02-13","terminal":"CLEBURNE, TX"},{"account":"TxDOT Paris District","location":"Hunt Co.- Greenville, TX","orderNbr":"WO0003352","product":"Brine Salt Type II Bulk","orderedQty":6,"shipments":0,"shipmentsRemaining":6,"requiredBy":"2026-02-11","terminal":"CLEBURNE, TX"},{"account":"TxDOT Waco District","location":"Hamilton Co. MO - 1301 East Main, Hamilton","orderNbr":"WO0002527","product":"Brine Salt Type II Supersack 2000#","orderedQty":8,"shipments":0,"shipmentsRemaining":8,"requiredBy":"2026-02-03","terminal":"CLEBURNE, TX"},{"account":"TxDOT Paris District","location":"Red River Co. - Clarksville","orderNbr":"WO0002813","product":"Road Salt ASTM Type I Bulk","orderedQty":2,"shipments":0,"shipmentsRemaining":2,"requiredBy":"2026-02-09","terminal":"CLEBURNE, TX"},{"account":"TxDOT Paris District","location":"Grayson Co. - Sherman, TX","orderNbr":"WO0002854","product":"Brine Salt Type II Bulk","orderedQty":10,"shipments":0,"shipmentsRemaining":10,"requiredBy":"2026-02-16","terminal":"CLEBURNE, TX"},{"account":"TxDOT Waco District","location":"Coryell Co. MO - 3502 East Main, Gatesville","orderNbr":"WO0002859","product":"Brine Salt Type II Supersack 2000#","orderedQty":4,"shipments":0,"shipmentsRemaining":4,"requiredBy":"2026-02-04","terminal":"CLEBURNE, TX"},{"account":"TxDOT Waco District","location":"Bell Co. MO - 410 West Loop 121, Belton","orderNbr":"WO0002864","product":"Road Salt ASTM Type I Supersack 2000#","orderedQty":10,"shipments":0,"shipmentsRemaining":10,"requiredBy":"2026-02-04","terminal":"CLEBURNE, TX"},{"account":"TxDOT Fort Worth District","location":"South Tarrant MO - 2540 Edgecliff Rd, Fort Worth","orderNbr":"WO0002892","product":"Brine Salt Type II Supersack 2000#","orderedQty":10,"shipments":0,"shipmentsRemaining":10,"requiredBy":"2026-02-06","terminal":"CLEBURNE, TX"},{"account":"TxDOT Fort Worth District","location":"Glen Rose MO - 503 NE Big Bend Trail, Glen Rose","orderNbr":"WO0003277","product":"Brine Salt Type II Supersack 2000#","orderedQty":8,"shipments":0,"shipmentsRemaining":8,"requiredBy":"2026-02-12","terminal":"CLEBURNE, TX"},{"account":"TxDOT Fort Worth District","location":"Stephenville MO - 2281 E Washington, Stephenville","orderNbr":"WO0003275","product":"Brine Salt Type II Supersack 2000#","orderedQty":1,"shipments":0,"shipmentsRemaining":1,"requiredBy":"2026-02-12","terminal":"CLEBURNE, TX"},{"account":"TxDOT Fort Worth District","location":"Stephenville MO - 2281 E Washington, Stephenville","orderNbr":"WO0003274","product":"Brine Salt Type II Supersack 2000#","orderedQty":3,"shipments":0,"shipmentsRemaining":3,"requiredBy":"2026-02-12","terminal":"CLEBURNE, TX"},{"account":"TxDOT Fort Worth District","location":"Granbury MO - 5721 N SH, Granbury","orderNbr":"WO0003273","product":"Brine Salt Type II Supersack 2000#","orderedQty":5,"shipments":0,"shipmentsRemaining":5,"requiredBy":"2026-02-12","terminal":"CLEBURNE, TX"},{"account":"TxDOT Fort Worth District","location":"Saginaw MO - 508 S Blue Mound Rd, Saginaw","orderNbr":"WO0003295","product":"Road Salt ASTM Type I Bulk","orderedQty":8,"shipments":0,"shipmentsRemaining":8,"requiredBy":"2026-02-16","terminal":"CLEBURNE, TX"},{"account":"TxDOT Fort Worth District","location":"Euless MO - 2501 W Euless Blvd, Euless","orderNbr":"WO0003294","product":"Road Salt ASTM Type I Bulk","orderedQty":6,"shipments":0,"shipmentsRemaining":6,"requiredBy":"2026-02-16","terminal":"CLEBURNE, TX"},{"account":"TxDOT Paris District","location":"Lamar Co. - Paris","orderNbr":"WO0002421","product":"Ice Slicer Elite Bag 50#","orderedQty":1,"shipments":0,"shipmentsRemaining":1,"requiredBy":"2026-02-05","terminal":"CLEBURNE, TX"},{"account":"TxDOT Fort Worth District","location":"Weatherford MO - 1427 W Bankhead Hwy, Weatherford","orderNbr":"WO0003339","product":"Road Salt Type I RED for Blending Complex Chlorides","orderedQty":16,"shipments":0,"shipmentsRemaining":16,"requiredBy":"2026-02-11","terminal":"CLEBURNE, TX"},{"account":"TxDOT Amarillo District","location":"Hereford MO - 3869 US Hwy 385, Hereford","orderNbr":"WO0001339","product":"Road Salt ASTM Type I Bulk","orderedQty":3,"shipments":0,"shipmentsRemaining":3,"requiredBy":"2025-11-11","terminal":"KRESS, TX"},{"account":"TxDOT Dallas District","location":"11467 Rylie Crest Dr, Balch Springs","orderNbr":"WO0002252","product":"Brine Solution","orderedQty":2,"shipments":0,"shipmentsRemaining":2,"requiredBy":"2026-01-28","terminal":"CLEBURNE, TX"},{"account":"TxDOT San Angelo District","location":"2126 N Main, Junction","orderNbr":"WO0002054","product":"Brine Solution","orderedQty":4,"shipments":0,"shipmentsRemaining":4,"requiredBy":"2026-02-07","terminal":"CLEBURNE, TX"},{"account":"TxDOT San Angelo District","location":"2126 N Main, Junction","orderNbr":"WO0002019","product":"Brine Solution","orderedQty":2,"shipments":0,"shipmentsRemaining":2,"requiredBy":"2026-01-26","terminal":"CLEBURNE, TX"},{"account":"TxDOT San Angelo District","location":"2126 N Main, Junction","orderNbr":"WO0001720","product":"Brine Solution","orderedQty":2,"shipments":0,"shipmentsRemaining":2,"requiredBy":"2026-02-05","terminal":"CLEBURNE, TX"},{"account":"TxDOT San Angelo District","location":"230 N SH 163, Ozona","orderNbr":"WO0001818","product":"Brine Solution","orderedQty":1,"shipments":0,"shipmentsRemaining":1,"requiredBy":"2026-02-05","terminal":"CLEBURNE, TX"},{"account":"TxDOT Dallas District","location":"505 S IH45, Hutchins","orderNbr":"WO0002249","product":"Brine Solution","orderedQty":4,"shipments":0,"shipmentsRemaining":4,"requiredBy":"2026-01-27","terminal":"CLEBURNE, TX"},{"account":"TxDOT Fort Worth District","location":"Saginaw MO - 508 S Blue Mound Rd, Saginaw","orderNbr":"WO0002599","product":"Brine Salt Type II Supersack 2000#","orderedQty":5,"shipments":0,"shipmentsRemaining":5,"requiredBy":"2026-02-11","terminal":"CLEBURNE, TX"},{"account":"TxDOT San Angelo District","location":"913 N US 83, Leakey","orderNbr":"WO0002766","product":"Brine Solution","orderedQty":2,"shipments":0,"shipmentsRemaining":2,"requiredBy":"2026-02-14","terminal":"CLEBURNE, TX"},{"account":"TxDOT San Angelo District","location":"140 E US 190, Eldorado","orderNbr":"WO0003077","product":"Brine Solution","orderedQty":1,"shipments":0,"shipmentsRemaining":1,"requiredBy":"2026-02-12","terminal":"CLEBURNE, TX"},{"account":"TxDOT San Angelo District","location":"708 N US 277, Sonora","orderNbr":"WO0003087","product":"Brine Solution","orderedQty":5,"shipments":0,"shipmentsRemaining":5,"requiredBy":"2026-02-12","terminal":"CLEBURNE, TX"},{"account":"TxDOT Paris District","location":"Delta Co. - Cooper","orderNbr":"WO0003234","product":"Ice Slicer Elite Bag 50#","orderedQty":1,"shipments":0,"shipmentsRemaining":1,"requiredBy":"2026-02-12","terminal":"CLEBURNE, TX"},{"account":"TxDOT Fort Worth District","location":"Bridgewood Stockpile - Fort Worth","orderNbr":"WO0003299","product":"Brine Solution","orderedQty":5,"shipments":0,"shipmentsRemaining":5,"requiredBy":"2026-02-11","terminal":"CLEBURNE, TX"},{"account":"TxDOT Odessa District","location":"Stanton","orderNbr":"WO0003836","product":"Ice Slicer Elite Bulk","orderedQty":10,"shipments":6,"shipmentsRemaining":4,"requiredBy":"2026-02-12","terminal":"KRESS, TX"},{"account":"TxDOT Odessa District","location":"Midland","orderNbr":"WO0003833","product":"Ice Slicer Elite Bulk","orderedQty":10,"shipments":3,"shipmentsRemaining":7,"requiredBy":"2026-02-12","terminal":"KRESS, TX"},{"account":"TxDOT Lubbock District","location":"Plainview","orderNbr":"WO0002976","product":"Road Salt ASTM Type I Bulk","orderedQty":8,"shipments":4,"shipmentsRemaining":4,"requiredBy":"2026-02-02","terminal":"KRESS, TX"},{"account":"TxDOT - North East Region","location":"Gainesville Maintenance Office","orderNbr":"WO0003658","product":"Brine Salt Type II Bulk","orderedQty":16,"shipments":5,"shipmentsRemaining":11,"requiredBy":"2026-01-29","terminal":"KRESS, TX"},{"account":"TxDOT Amarillo District","location":"Channing MO - 200 Rock Island Ave, Channing","orderNbr":"WO0002567","product":"Road Salt ASTM Type I Bulk","orderedQty":8,"shipments":3,"shipmentsRemaining":5,"requiredBy":"2026-02-04","terminal":"KRESS, TX"},{"account":"TxDOT El Paso District","location":"Van Horn MO - Van Horn, TX","orderNbr":"WO0003702","product":"Ice Slicer Elite Bulk","orderedQty":6,"shipments":1,"shipmentsRemaining":5,"requiredBy":"2026-02-03","terminal":"KRESS, TX"},{"account":"TxDOT Odessa District","location":"Monahans","orderNbr":"WO0003821","product":"Ice Slicer Elite Bulk","orderedQty":6,"shipments":3,"shipmentsRemaining":3,"requiredBy":"2026-02-12","terminal":"KRESS, TX"},{"account":"TxDOT - West Region","location":"Happy Salt Shed","orderNbr":"WO0003659","product":"Brine Salt Type II Bulk","orderedQty":20,"shipments":19,"shipmentsRemaining":1,"requiredBy":"2026-01-29","terminal":"KRESS, TX"},{"account":"TxDOT Waco District","location":"McLennan Co. MO - 7479 Bagby Ave, Waco","orderNbr":"WO0002102","product":"Road Salt ASTM Type I Bulk","orderedQty":26,"shipments":20,"shipmentsRemaining":6,"requiredBy":"2026-01-26","terminal":"CLEBURNE, TX"},{"account":"TxDOT Fort Worth District","location":"Johnson MO - 2200 FM 2280, Keene","orderNbr":"WO0002069","product":"Brine Salt Type II Supersack 2000#","orderedQty":7,"shipments":3,"shipmentsRemaining":4,"requiredBy":"2026-01-26","terminal":"CLEBURNE, TX"},{"account":"TxDOT Waco District","location":"Limestone Co. MO - 3229 SH 14 N, Mexia","orderNbr":"WO0002134","product":"Brine Salt Type II Supersack 2000#","orderedQty":3,"shipments":1,"shipmentsRemaining":2,"requiredBy":"2026-01-26","terminal":"CLEBURNE, TX"},{"account":"TxDOT Dallas District","location":"2624 W Prairie St, Denton","orderNbr":"WO0002311","product":"Brine Salt Type II Supersack 2000#","orderedQty":2,"shipments":1,"shipmentsRemaining":1,"requiredBy":"2026-02-04","terminal":"CLEBURNE, TX"},{"account":"TxDOT Paris District","location":"Grayson Co. - Sherman, TX","orderNbr":"WO0002117","product":"Brine Salt Type II Bulk","orderedQty":6,"shipments":2,"shipmentsRemaining":4,"requiredBy":"2026-02-09","terminal":"CLEBURNE, TX"},{"account":"TxDOT Dallas District","location":"1424 High Meadows Way, Cedar Hill","orderNbr":"WO0001985","product":"Brine Salt Type II Supersack 2000#","orderedQty":5,"shipments":2,"shipmentsRemaining":3,"requiredBy":"2026-01-31","terminal":"CLEBURNE, TX"},{"account":"TxDOT San Angelo District","location":"2802 Armstrong, San Angelo","orderNbr":"WO0001465","product":"Brine Solution","orderedQty":7,"shipments":5,"shipmentsRemaining":2,"requiredBy":"2025-12-19","terminal":"CLEBURNE, TX"},{"account":"TxDOT El Paso District","location":"Marfa MO - Marfa, TX","orderNbr":"WO0001543","product":"Ice Slicer Elite Bulk","orderedQty":2,"shipments":1,"shipmentsRemaining":1,"requiredBy":"2026-01-14","terminal":"CLEBURNE, TX"},{"account":"TxDOT Fort Worth District","location":"Jack MO - 1208 S Main, Jacksboro","orderNbr":"WO0001599","product":"Brine Solution","orderedQty":1,"shipments":1,"shipmentsRemaining":0,"requiredBy":"2026-01-27","terminal":"CLEBURNE, TX"},{"account":"TxDOT Dallas District","location":"124 FM 876, Waxahachie","orderNbr":"WO0001709","product":"Brine Salt Type II Supersack 2000#","orderedQty":3,"shipments":1,"shipmentsRemaining":2,"requiredBy":"2026-01-28","terminal":"CLEBURNE, TX"},{"account":"TxDOT Fort Worth District","location":"Stephenville MO - 2281 E Washington, Stephenville","orderNbr":"WO0001796","product":"Brine Salt Type II Supersack 2000#","orderedQty":4,"shipments":2,"shipmentsRemaining":2,"requiredBy":"2026-02-03","terminal":"CLEBURNE, TX"},{"account":"TxDOT Paris District","location":"Lamar Co. - Paris","orderNbr":"WO0002377","product":"Road Salt ASTM Type I Bulk","orderedQty":16,"shipments":8,"shipmentsRemaining":8,"requiredBy":"2026-02-05","terminal":"CLEBURNE, TX"},{"account":"TxDOT Fort Worth District","location":"Jack MO - 1208 S Main, Jacksboro","orderNbr":"WO0001926","product":"Brine Solution","orderedQty":7,"shipments":6,"shipmentsRemaining":1,"requiredBy":"2026-01-31","terminal":"CLEBURNE, TX"},{"account":"TxDOT Dallas District","location":"Spur 408 Stockpile, Dallas","orderNbr":"WO0001983","product":"Road Salt ASTM Type I Bulk","orderedQty":12,"shipments":8,"shipmentsRemaining":4,"requiredBy":"2026-01-31","terminal":"CLEBURNE, TX"},{"account":"TxDOT Dallas District","location":"100 SW County Rd 1000, Corsicana","orderNbr":"WO0002015","product":"Brine Salt Type II Supersack 2000#","orderedQty":3,"shipments":2,"shipmentsRemaining":1,"requiredBy":"2026-02-02","terminal":"CLEBURNE, TX"},{"account":"TxDOT Fort Worth District","location":"Granbury MO - 5721 N SH, Granbury","orderNbr":"WO0001797","product":"Brine Salt Type II Supersack 2000#","orderedQty":5,"shipments":2,"shipmentsRemaining":3,"requiredBy":"2026-02-03","terminal":"CLEBURNE, TX"},{"account":"TxDOT Wichita Falls District","location":"Seymour","orderNbr":"SO0002118","product":"Road Salt ASTM Type I Bulk","orderedQty":3,"shipments":2,"shipmentsRemaining":1,"requiredBy":"2026-02-13","terminal":"CLEBURNE, TX"},{"account":"TxDOT Fort Worth District","location":"Jack MO - 1208 S Main, Jacksboro","orderNbr":"WO0003537","product":"Brine Solution","orderedQty":8,"shipments":1,"shipmentsRemaining":7,"requiredBy":"2026-02-13","terminal":"CLEBURNE, TX"},{"account":"TxDOT San Angelo District","location":"6302 N US 87, Sterling City","orderNbr":"WO0003578","product":"Brine Solution","orderedQty":3,"shipments":1,"shipmentsRemaining":2,"requiredBy":"2026-02-19","terminal":"CLEBURNE, TX"},{"account":"TxDOT Dallas District","location":"505 S IH45, Hutchins","orderNbr":"WO0003753","product":"Brine Salt Type II Supersack 2000#","orderedQty":7,"shipments":2,"shipmentsRemaining":5,"requiredBy":"2026-02-24","terminal":"CLEBURNE, TX"},{"account":"TxDOT Bryan District","location":"Freestone County MO - Fairfield, TX","orderNbr":"WO0003774","product":"Ice Slicer Elite Supersack 2000#","orderedQty":2,"shipments":1,"shipmentsRemaining":1,"requiredBy":"2026-03-02","terminal":"CLEBURNE, TX"},{"account":"TxDOT Bryan District","location":"Leon County MO - Buffalo, TX","orderNbr":"WO0003785","product":"Ice Slicer Elite Supersack 2000#","orderedQty":2,"shipments":1,"shipmentsRemaining":1,"requiredBy":"2026-03-02","terminal":"CLEBURNE, TX"},{"account":"TxDOT Bryan District","location":"Washington County MO - Brenham, TX","orderNbr":"WO0003815","product":"Ice Slicer Elite Supersack 2000#","orderedQty":2,"shipments":1,"shipmentsRemaining":1,"requiredBy":"2026-03-04","terminal":"CLEBURNE, TX"},{"account":"TxDOT Paris District","location":"Red River Co. - Clarksville","orderNbr":"WO0003857","product":"Road Salt ASTM Type I Bulk","orderedQty":3,"shipments":2,"shipmentsRemaining":1,"requiredBy":"2026-03-06","terminal":"CLEBURNE, TX"},{"account":"TxDOT Wichita Falls District","location":"Nocona","orderNbr":"WO0003872","product":"Brine Salt Type II Bulk","orderedQty":3,"shipments":2,"shipmentsRemaining":1,"requiredBy":"2026-03-12","terminal":"CLEBURNE, TX"},{"account":"TxDOT Fort Worth District","location":"FM 51 Stockpile - Granbury","orderNbr":"WO0003343","product":"Brine Solution","orderedQty":3,"shipments":2,"shipmentsRemaining":1,"requiredBy":"2026-02-13","terminal":"CLEBURNE, TX"},{"account":"TxDOT Fort Worth District","location":"Gordon Co. MO - 4015 S Main St (FM 919), Gordon","orderNbr":"WO0002574","product":"Brine Salt Type II Supersack 2000#","orderedQty":10,"shipments":7,"shipmentsRemaining":3,"requiredBy":"2026-02-12","terminal":"CLEBURNE, TX"},{"account":"TxDOT Fort Worth District","location":"Mustang Stockpile - Grapevine","orderNbr":"WO0002592","product":"Brine Solution","orderedQty":5,"shipments":1,"shipmentsRemaining":4,"requiredBy":"2026-01-28","terminal":"CLEBURNE, TX"},{"account":"TxDOT Wichita Falls District","location":"Seymour","orderNbr":"WO0003064","product":"Road Salt ASTM Type I Bulk","orderedQty":8,"shipments":5,"shipmentsRemaining":3,"requiredBy":"2026-02-13","terminal":"CLEBURNE, TX"},{"account":"TxDOT Fort Worth District","location":"Decatur MO (Wise Co.) - Decatur, TX","orderNbr":"WO0003185","product":"Road Salt ASTM Type I Bulk","orderedQty":16,"shipments":2,"shipmentsRemaining":14,"requiredBy":"2026-02-09","terminal":"CLEBURNE, TX"},{"account":"TxDOT Paris District","location":"Delta Co. - Cooper","orderNbr":"WO0003203","product":"Road Salt ASTM Type I Bulk","orderedQty":4,"shipments":3,"shipmentsRemaining":1,"requiredBy":"2026-02-06","terminal":"CLEBURNE, TX"},{"account":"TxDOT Dallas District","location":"901 E IH 30, Rockwall","orderNbr":"WO0003248","product":"Brine Salt Type II Supersack 2000#","orderedQty":3,"shipments":1,"shipmentsRemaining":2,"requiredBy":"2026-02-10","terminal":"CLEBURNE, TX"},{"account":"TxDOT Fort Worth District","location":"Granbury MO - 5721 N SH, Granbury","orderNbr":"WO0003276","product":"Ice Slicer Elite Supersack 2000#","orderedQty":14,"shipments":9,"shipmentsRemaining":5,"requiredBy":"2026-02-12","terminal":"CLEBURNE, TX"},{"account":"TxDOT Fort Worth District","location":"Lancaster Stockpile - Fort Worth","orderNbr":"WO0003298","product":"Brine Solution","orderedQty":5,"shipments":4,"shipmentsRemaining":1,"requiredBy":"2026-02-11","terminal":"CLEBURNE, TX"},{"account":"TxDOT Fort Worth District","location":"Glen Rose MO - 503 NE Big Bend Trail, Glen Rose","orderNbr":"WO0003342","product":"Brine Solution","orderedQty":6,"shipments":5,"shipmentsRemaining":1,"requiredBy":"2026-02-13","terminal":"CLEBURNE, TX"}];
+
+/* =========================================================
+   ONE-FILE DATA: Load CSV from GitHub Pages for everyone
+   ========================================================= */
+
+// 1) Put your daily CSV at: /data/TXDOT_latest.csv (in this repo)
+// 2) Overwrite it in GitHub each day
+// 3) Everyone refreshes and sees the update
+const CSV_URL = 'TXDOT_latest.csv';
+
+// Dynamic "today" for SLA color/overdue logic
+const NOW = new Date();
+const TODAY = new Date(NOW.getFullYear(), NOW.getMonth(), NOW.getDate());
+const toYMD = d => d.toISOString().slice(0,10);
+
+// CSV parsing helpers (robust to quoted commas and escaped quotes)
+function parseCsvLine(line){
+  const out=[]; let cur='', inQuotes=false;
+  for(let i=0;i<line.length;i++){
+    const ch=line[i];
+    if(ch==='"'){
+      if(inQuotes && line[i+1]==='"'){ cur+='"'; i++; }
+      else inQuotes=!inQuotes;
+    } else if(ch===',' && !inQuotes){
+      out.push(cur); cur='';
+    } else cur+=ch;
+  }
+  out.push(cur);
+  return out.map(s=>s.trim());
+}
+function parseCsvToRows(text){
+  const lines=text.split(/\r?\n/).filter(l=>l.trim().length);
+  if(!lines.length) return [];
+  const hdr=parseCsvLine(lines[0].replace(/^\uFEFF/,'')).map(h=>h.replace(/"/g,''));
+  const rows=[];
+  for(let i=1;i<lines.length;i++){
+    const l=lines[i]; if(!l) continue;
+    const vals=parseCsvLine(l);
+    const obj={}; hdr.forEach((h,j)=>obj[h]=(vals[j]||'').replace(/"/g,''));
+    const acct=obj['Account Name_2']||''; if(!acct) continue;
+
+    let rBy=''; const rb=obj['Required By']||'';
+    if(rb){ const m=rb.match(/(\d{1,2})\/(\d{1,2})\/(\d{4})/); if(m) rBy=`${m[3]}-${m[1].padStart(2,'0')}-${m[2].padStart(2,'0')}`; }
+    let sr=parseInt(obj['Shipments Remaining']||'0')||0;
+    if(!sr){
+      Object.keys(obj).forEach(k=>{
+        const v=(obj[k]||'').trim();
+        if(!k.trim() && /^\d+$/.test(v) && parseInt(v)>0) sr=parseInt(v);
+      });
+    }
+    let term=obj['Terminal Key']||'';
+    if(!term){
+      Object.keys(obj).forEach(k=>{
+        if(!k.trim() && (obj[k]||'').includes('TX')) term=(obj[k]||'').trim();
+      });
+    }
+    rows.push({
+      account: acct.trim(),
+      location: (obj['Location Name_3']||'').trim(),
+      orderNbr: (obj['Related Order Nbr']||'').trim(),
+      product: (obj['Product']||'').trim(),
+      orderedQty: parseInt(obj['Ordered Qty.']||'0')||0,
+      shipments: parseInt(obj['Shipments']||'0')||0,
+      shipmentsRemaining: sr,
+      requiredBy: rBy,
+      terminal: term.trim()
+    });
+  }
+  return rows;
+}
+async function fetchText(url){
+  const res=await fetch(url,{cache:'no-store'});
+  if(!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+  return res.text();
+}
+
+/* =========================================================
+   Your existing embedded DATA stays as fallback.
+   (Used on first paint or if CSV is missing)
+   ========================================================= */
+const DATA=[{"account":"TxDOT Odessa District","location":"Crane","orderNbr":"WO0002099","product":"Road Salt ASTM Type I Bulk","orderedQty":8,"shipments":0,"shipmentsRemaining":8,"requiredBy":"2026-01-28","terminal":"KRESS, TX"},{"account":"TxDOT El Paso District","location":"West El Paso MO - El Paso, TX","orderNbr":"WO0003871","product":"Brine Salt Type II Bulk","orderedQty":4,"shipments":0,"shipmentsRemaining":4,"requiredBy":"2026-03-19","terminal":"KRESS, TX"},/* ... (unchanged embedded dataset, truncated here for brevity) ... */{"account":"TxDOT Fort Worth District","location":"Glen Rose MO - 503 NE Big Bend Trail, Glen Rose","orderNbr":"WO0003342","product":"Brine Solution","orderedQty":6,"shipments":5,"shipmentsRemaining":1,"requiredBy":"2026-02-13","terminal":"CLEBURNE, TX"}];
+
 const TRAILERS=['','Belt','Dry Bulk Pneumatic','End Dump','Flatbed','Hopper Bottom','Tanker','Van/Enclosed','Walking Floor'];
 const SORTS=[{k:'requiredBy_asc',l:'Required By (oldest)'},{k:'requiredBy_desc',l:'Required By (newest)'},{k:'account_asc',l:'Account A-Z'},{k:'account_desc',l:'Account Z-A'},{k:'shipmentsRemaining_desc',l:'Most Remaining'},{k:'shipmentsRemaining_asc',l:'Least Remaining'},{k:'product_asc',l:'Product A-Z'}];
 
@@ -67,86 +148,156 @@ let state={
   schedules:JSON.parse(localStorage.getItem('nsg_schedules')||'{}'),
   completedLoads:JSON.parse(localStorage.getItem('nsg_completedLoads')||'[]'),
   deliveredEntries:JSON.parse(localStorage.getItem('nsg_deliveredEntries')||'[]'),
-  uploadHistory:JSON.parse(localStorage.getItem('nsg_uploadHistory')||'[]'),
-  calMonth:2,calYear:2026,
-  detailItem:null,schedulerItem:null,schedulerRows:[]
+  // uploadHistory removed (no longer used)
+  calMonth:TODAY.getMonth(), calYear:TODAY.getFullYear(),
+  detailItem:null, schedulerItem:null, schedulerRows:[],
+  lastDataInfo:null // set after CSV load
 };
 function save(){
-  try{localStorage.setItem('nsg_inputs',JSON.stringify(state.inputs));
-  localStorage.setItem('nsg_schedules',JSON.stringify(state.schedules));
-  localStorage.setItem('nsg_completedLoads',JSON.stringify(state.completedLoads));
-  localStorage.setItem('nsg_deliveredEntries',JSON.stringify(state.deliveredEntries));
-  localStorage.setItem('nsg_uploadHistory',JSON.stringify(state.uploadHistory.map(h=>({date:h.date,filename:h.filename,recordCount:h.recordCount}))));}catch(e){}
+  try{
+    localStorage.setItem('nsg_inputs',JSON.stringify(state.inputs));
+    localStorage.setItem('nsg_schedules',JSON.stringify(state.schedules));
+    localStorage.setItem('nsg_completedLoads',JSON.stringify(state.completedLoads));
+    localStorage.setItem('nsg_deliveredEntries',JSON.stringify(state.deliveredEntries));
+  }catch(e){}
 }
 function upd(id,f,v){if(!state.inputs[id])state.inputs[id]={};state.inputs[id][f]=v;save();render();}
-const pCol=d=>{if(!d)return'#64748b';const x=(new Date(d)-new Date('2026-03-18'))/864e5;return x<-30?'#dc2626':x<-7?'#ca8a04':'#16a34a';};
+const pCol=d=>{ if(!d) return '#64748b'; const x=(new Date(d)-TODAY)/864e5; return x<-30?'#dc2626':x<-7?'#ca8a04':'#16a34a'; };
 const fD=d=>d?new Date(d+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):'—';
 const fDS=d=>d?new Date(d+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'}):'';
-const ovd=d=>d?Math.floor((new Date('2026-03-18')-new Date(d))/864e5):null;
+const ovd=d=>d?Math.floor((TODAY-new Date(d))/864e5):null;
 const pC=p=>p.includes('Road Salt')?'#3b82f6':p.includes('Brine Salt')?'#8b5cf6':p.includes('Ice Slicer')?'#06b6d4':p.includes('Brine Solution')?'#10b981':'#f59e0b';
 const isEntryDelivered=(id,si,dt)=>state.deliveredEntries.some(e=>e.id===id&&e.schedIdx===(si!=null?si:-1)&&e.date===(dt||''));
 const esc=s=>(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 
+// ---- NEW: load CSV and replace state.data, preserving inputs/schedules
+async function initDataFromCsv(){
+  try{
+    const text = await fetchText(CSV_URL);
+    const rows = parseCsvToRows(text);
+    if(!rows.length) throw new Error('CSV parsed empty');
+    const newData = rows.map((r,i)=>({...r,_id:i}));
+
+    const newIn={}, newSc={};
+    newData.forEach(nr=>{
+      const old = state.data.find(o=>o.orderNbr===nr.orderNbr && o.account===nr.account && o.product===nr.product);
+      if(old){
+        if(state.inputs[old._id])   newIn[nr._id] = state.inputs[old._id];
+        if(state.schedules[old._id])newSc[nr._id] = state.schedules[old._id];
+      }
+    });
+
+    state.data = newData;
+    state.inputs = newIn;
+    state.schedules = newSc;
+    state.lastDataInfo = { fileName: 'TXDOT_latest.csv', sourcePath: CSV_URL, pickedBy: 'fixed-file' };
+    save();
+    render(); // re-render with latest CSV
+  }catch(err){
+    console.warn('CSV load failed, using embedded DATA. Error:', err);
+    state.lastDataInfo = { fileName: '(embedded)', sourcePath: '', pickedBy: 'fallback' };
+  }
+}
+
 function getFiltered(){
   let d=state.data.filter(r=>r.shipmentsRemaining>0);
-  if(state.termF!=='ALL')d=d.filter(r=>r.terminal===state.termF);
-  if(state.filterProduct!=='ALL')d=d.filter(r=>r.product===state.filterProduct);
-  if(state.filterAccount!=='ALL')d=d.filter(r=>r.account===state.filterAccount);
-  const[field,dir]=state.sortKey.split('_');
-  d.sort((a,b)=>{let va=a[field],vb=b[field];if(typeof va==='number')return dir==='asc'?va-vb:vb-va;va=va||'';vb=vb||'';return dir==='asc'?va.localeCompare(vb):vb.localeCompare(va);});
+  if(state.termF!=='ALL') d=d.filter(r=>r.terminal===state.termF);
+  if(state.filterProduct!=='ALL') d=d.filter(r=>r.product===state.filterProduct);
+  if(state.filterAccount!=='ALL') d=d.filter(r=>r.account===state.filterAccount);
+  const [field,dir]=state.sortKey.split('_');
+  d.sort((a,b)=>{
+    let va=a[field], vb=b[field];
+    if(typeof va==='number') return dir==='asc'?va-vb:vb-va;
+    va=va||''; vb=vb||'';
+    return dir==='asc'?va.localeCompare(vb):vb.localeCompare(va);
+  });
   return d;
 }
 function getStats(){
   const all=state.termF==='ALL'?state.data:state.data.filter(r=>r.terminal===state.termF);
-  const tOrd=all.reduce((s,r)=>s+r.orderedQty,0),tShip=all.reduce((s,r)=>s+r.shipments,0),tRem=all.reduce((s,r)=>s+r.shipmentsRemaining,0);
-  const byP={};all.forEach(r=>{if(!byP[r.product])byP[r.product]={shipped:0,remaining:0,ordered:0};byP[r.product].shipped+=r.shipments;byP[r.product].remaining+=r.shipmentsRemaining;byP[r.product].ordered+=r.orderedQty;});
-  return{tOrd,tShip,tRem,byP};
+  const tOrd=all.reduce((s,r)=>s+r.orderedQty,0), tShip=all.reduce((s,r)=>s+r.shipments,0), tRem=all.reduce((s,r)=>s+r.shipmentsRemaining,0);
+  const byP={}; all.forEach(r=>{ if(!byP[r.product]) byP[r.product]={shipped:0,remaining:0,ordered:0}; byP[r.product].shipped+=r.shipments; byP[r.product].remaining+=r.shipmentsRemaining; byP[r.product].ordered+=r.orderedQty;});
+  return {tOrd,tShip,tRem,byP};
 }
 function getCalItems(){
   const map={};
   state.data.forEach(r=>{
     const sched=state.schedules[r._id];
-    if(sched&&sched.length>0){sched.forEach((s,si)=>{if(s.date&&s.loads>0){if(!map[s.date])map[s.date]=[];map[s.date].push({...r,_sL:s.loads,_sC:s.carrier||'',_sT:s.trailerType||'',_si:si});}});}
-    else{const est=state.inputs[r._id]?.estDelivery;if(est){if(!map[est])map[est]=[];map[est].push({...r,_sL:r.shipmentsRemaining,_sC:state.inputs[r._id]?.carrier||'',_sT:state.inputs[r._id]?.trailerType||'',_si:-1});}}
+    if(sched&&sched.length>0){
+      sched.forEach((s,si)=>{
+        if(s.date&&s.loads>0){
+          if(!map[s.date]) map[s.date]=[];
+          map[s.date].push({...r,_sL:s.loads,_sC:s.carrier||'',_sT:s.trailerType||'',_si:si});
+        }
+      });
+    } else {
+      const est=state.inputs[r._id]?.estDelivery;
+      if(est){
+        if(!map[est]) map[est]=[];
+        map[est].push({...r,_sL:r.shipmentsRemaining,_sC:state.inputs[r._id]?.carrier||'',_sT:state.inputs[r._id]?.trailerType||'',_si:-1});
+      }
+    }
   });
   return map;
 }
 function optionsHtml(opts,sel){return opts.map(o=>`<option value="${esc(o)}"${o===sel?' selected':''}>${esc(o||'Select...')}</option>`).join('');}
 function markDelivered(r,dt){
-  if(isEntryDelivered(r._id,r._si,dt))return;
+  if(isEntryDelivered(r._id,r._si,dt)) return;
   state.deliveredEntries.push({id:r._id,schedIdx:r._si!=null?r._si:-1,date:dt||''});
   const ui=state.inputs[r._id]||{};
-  state.completedLoads.unshift({...r,completedDate:new Date().toISOString().slice(0,10),completedTime:new Date().toLocaleTimeString(),carrier:r._sC||ui.carrier||'',trailerType:r._sT||ui.trailerType||'',estDelivery:dt||ui.estDelivery||'',deliveredLoads:r._sL||r.shipmentsRemaining,_entrySchedIdx:r._si!=null?r._si:-1,_entryDate:dt||''});
-  save();render();
+  state.completedLoads.unshift({
+    ...r,
+    completedDate:new Date().toISOString().slice(0,10),
+    completedTime:new Date().toLocaleTimeString(),
+    carrier:r._sC||ui.carrier||'',
+    trailerType:r._sT||ui.trailerType||'',
+    estDelivery:dt||ui.estDelivery||'',
+    deliveredLoads:r._sL||r.shipmentsRemaining,
+    _entrySchedIdx:r._si!=null?r._si:-1,
+    _entryDate:dt||''
+  });
+  save(); render();
 }
 function undoCompleted(idx){
-  const item=state.completedLoads[idx];if(!item)return;
+  const item=state.completedLoads[idx]; if(!item) return;
   state.completedLoads.splice(idx,1);
-  state.deliveredEntries=state.deliveredEntries.filter(e=>!(e.id===item._id&&e.schedIdx===(item._entrySchedIdx!=null?item._entrySchedIdx:-1)&&e.date===(item._entryDate||'')));
-  save();render();
+  state.deliveredEntries=state.deliveredEntries.filter(e=>!(e.id===item._id && e.schedIdx===(item._entrySchedIdx!=null?item._entrySchedIdx:-1) && e.date===(item._entryDate||'')));
+  save(); render();
 }
 function exportCSV(){
   let csv='Status,Account,Location,Order Nbr,Product,Ordered,Shipped,Remaining,Required By,Terminal,Est Delivery,Loads,Carrier,Trailer,Completed\n';
-  state.data.forEach(r=>{const ui=state.inputs[r._id]||{};csv+=`Active,${esc(r.account)},"${esc(r.location)}",${r.orderNbr},"${esc(r.product)}",${r.orderedQty},${r.shipments},${r.shipmentsRemaining},${r.requiredBy},${r.terminal},${ui.estDelivery||''},${ui.estLoads||''},${ui.carrier||''},${ui.trailerType||''},\n`;});
-  state.completedLoads.forEach(r=>{csv+=`Completed,${esc(r.account)},"${esc(r.location)}",${r.orderNbr},"${esc(r.product)}",${r.orderedQty},${r.shipments},${r.shipmentsRemaining},${r.requiredBy},${r.terminal},${r.estDelivery||''},,${r.carrier||''},${r.trailerType||''},${r.completedDate||''}\n`;});
-  const blob=new Blob([csv],{type:'text/csv'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='NSG_TxDOT_'+new Date().toISOString().slice(0,10)+'.csv';a.click();
+  state.data.forEach(r=>{const ui=state.inputs[r._id]||{}; csv+=`Active,${esc(r.account)},"${esc(r.location)}",${esc(r.orderNbr)},"${esc(r.product)}",${r.orderedQty},${r.shipments},${r.shipmentsRemaining},${r.requiredBy},${esc(r.terminal)},${ui.estDelivery||''},${ui.estLoads||''},${ui.carrier||''},${ui.trailerType||''},\n`;});
+  state.completedLoads.forEach(r=>{ csv+=`Completed,${esc(r.account)},"${esc(r.location)}",${esc(r.orderNbr)},"${esc(r.product)}",${r.orderedQty},${r.shipments},${r.shipmentsRemaining},${r.requiredBy},${esc(r.terminal)},${r.estDelivery||''},,${r.carrier||''},${r.trailerType||''},${r.completedDate||''}\n`;});
+  const blob=new Blob([csv],{type:'text/csv'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='NSG_TxDOT_'+new Date().toISOString().slice(0,10)+'.csv'; a.click();
 }
 
 // ===== RENDER =====
 function render(){
-  const s=state,d=getFiltered(),st=getStats(),pct=st.tOrd>0?Math.round(st.tShip/st.tOrd*100):0;
+  const s=state, d=getFiltered(), st=getStats(), pct=st.tOrd>0?Math.round(st.tShip/st.tOrd*100):0;
   const terms=[...new Set(s.data.map(r=>r.terminal))].sort();
   const prods=[...new Set(s.data.map(r=>r.product))].sort();
   const accts=[...new Set(s.data.map(r=>r.account))].sort();
-  let h=`<div class="hdr"><div class="logo"><div class="logo-icon">N</div><div><div style="font-size:20px;font-weight:700;color:#f8fafc">NSG - TxDOT</div><div style="font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:.08em">Load Scheduling & Dispatch Board</div></div></div>`;
+
+  let h=`<div class="hdr"><div class="logo"><div class="logo-icon">N</div><div><div style="font-size:20px;font-weight:700;color:#f8fafc">NSG - TxDOT</div><div style="font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:.08em">Load Scheduling &amp; Dispatch Board</div></div></div>`;
+
   h+=`<div class="tabs">`;
-  ['board','calendar','completed','products','dashboard','upload'].forEach(t=>{
-    const labels={board:'Priority Board',calendar:'Calendar',completed:'Completed',products:'By Product',dashboard:'Dashboard',upload:'Upload Data'};
+  ['board','calendar','completed','products','dashboard'].forEach(t=>{
+    const labels={board:'Priority Board',calendar:'Calendar',completed:'Completed',products:'By Product',dashboard:'Dashboard'};
     h+=`<button class="tab${s.tab===t?' active':''}" onclick="state.tab='${t}';render()">${labels[t]}</button>`;
   });
   h+=`</div><button class="btn btn-green" onclick="exportCSV()" style="display:flex;align-items:center;gap:5px">📥 Export</button></div>`;
+
+  // NEW: show which data file is loaded
+  if (s.lastDataInfo){
+    h+=`<div style="padding:6px 20px;background:#0f1629;border-bottom:1px solid #1e293b;font-size:11px;color:#94a3b8">
+           Data source: <b style="color:#f8fafc">${esc(s.lastDataInfo.fileName)}</b>
+           <span style="margin-left:8px;color:#64748b">(${esc(s.lastDataInfo.pickedBy)})</span>
+        </div>`;
+  }
+
   // Filter bar
   h+=`<div class="filter-bar"><span style="font-size:11px;color:#64748b;font-weight:600">TERMINAL:</span><select onchange="state.termF=this.value;render()"><option value="ALL">All</option>${terms.map(t=>`<option value="${esc(t)}"${s.termF===t?' selected':''}>${esc(t)}</option>`).join('')}</select><div style="flex:1"></div><span style="font-size:12px;color:#94a3b8"><b style="color:#f8fafc">${d.length}</b> items | <b style="color:#f8fafc">${st.tRem}</b> remaining</span></div>`;
+
   // Stats
   h+=`<div class="stats">`;
   [[st.tOrd,'Total Ordered','#c2410c'],[st.tShip,'Total Shipped','#22c55e'],[st.tRem,'Remaining','#ca8a04'],[s.completedLoads.length,'Delivered','#22c55e'],[pct+'%','Completion','#3b82f6']].forEach(([v,l,c],i)=>{
@@ -165,13 +316,13 @@ function render(){
     h+=`<div class="row row-hdr cols">
       <span style="color:#c2410c">Priority</span><span>Customer</span><span>Delivery Location</span><span>Work Order</span><span>Product Type</span><span style="text-align:center">Ord</span><span style="text-align:center;color:#22c55e">Ship</span><span style="text-align:center;color:#ca8a04">Rem</span><span>Req By</span><span>Est. Delivery</span><span style="text-align:center">Loads</span><span>Carrier</span><span>Trailer Type</span><span style="text-align:center;color:#3b82f6">Schedule</span></div>`;
     d.forEach((r,idx)=>{
-      const ui=s.inputs[r._id]||{},od=ovd(r.requiredBy),sc=s.schedules[r._id],hasSc=sc&&sc.length>0;
-      const scCnt=hasSc?sc.length:0,scL=hasSc?sc.reduce((a,x)=>a+(x.loads||0),0):0;
+      const ui=s.inputs[r._id]||{}, od=ovd(r.requiredBy), sc=s.schedules[r._id], hasSc=sc&&sc.length>0;
+      const scCnt=hasSc?sc.length:0, scL=hasSc?sc.reduce((a,x)=>a+(x.loads||0),0):0;
       h+=`<div class="row cols" style="${hasSc?'background:#111d2e;border-color:#1e3a5f':''}">
         <span class="badge" style="background:${pCol(r.requiredBy)}22;color:${pCol(r.requiredBy)}">${idx+1}</span>
         <span style="color:#f8fafc;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${esc(r.account)}">${esc(r.account.replace('TxDOT ',''))}</span>
         <span style="color:#94a3b8;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:10px" title="${esc(r.location)}">${esc(r.location)}</span>
-        <span style="color:#60a5fa;font-weight:600;font-size:11px">${r.orderNbr}</span>
+        <span style="color:#60a5fa;font-weight:600;font-size:11px">${esc(r.orderNbr)}</span>
         <span class="tag" style="background:${pC(r.product)}18;color:${pC(r.product)}">${esc(r.product.length>26?r.product.slice(0,26)+'…':r.product)}</span>
         <span style="font-weight:600;color:#f8fafc;text-align:center">${r.orderedQty}</span>
         <span style="color:#22c55e;text-align:center">${r.shipments}</span>
@@ -199,14 +350,14 @@ function render(){
         <span style="font-size:16px;font-weight:700;color:#f8fafc;min-width:180px;text-align:center">${mn}</span>
         <button class="btn" onclick="state.calMonth=Math.min(11,state.calMonth+1);render()">▶</button>
       </div>
-      <span style="font-size:12px;color:#94a3b8">Click a load for details & delivery. Drag to reschedule.</span>
+      <span style="font-size:12px;color:#94a3b8">Click a load for details &amp; delivery. Drag to reschedule.</span>
     </div>`;
     h+=`<table class="cal"><thead><tr>${['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(d=>`<th style="padding:6px 4px;background:#0f1629;color:#64748b;font-size:11px;font-weight:600;text-align:center;border-bottom:1px solid #1e293b">${d}</th>`).join('')}</tr></thead><tbody><tr>`;
     let cells=0;
     for(let i=0;i<sd;i++){h+=`<td class="cal-cell" style="background:#0a0e17"></td>`;cells++;}
-    const today='2026-03-18';
+    const today=toYMD(TODAY);
     for(let day=1;day<=dim;day++){
-      if(cells>0&&cells%7===0)h+=`</tr><tr>`;
+      if(cells>0&&cells%7===0) h+=`</tr><tr>`;
       const ds=`${s.calYear}-${String(s.calMonth+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
       const isT=ds===today;
       const isWe=new Date(ds+'T00:00:00').getDay()===0||new Date(ds+'T00:00:00').getDay()===6;
@@ -218,13 +369,13 @@ function render(){
         const del=isEntryDelivered(r._id,r._si,ds);
         const c=del?'#6b7280':pC(r.product);
         h+=`<div class="cal-tag${del?' delivered':''}" draggable="${!del}" ondragstart="calDragStart(${r._id},${r._si!=null?r._si:-1})" onclick="showDetail(${r._id},${r._si!=null?r._si:-1},'${ds}')" style="background:${del?'#37415118':c+'15'};color:${c};border-left:3px solid ${del?'#4b556380':c};opacity:${del?.65:1}">
-          <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-weight:700;font-size:11px">${del?'✓ ':''}${r.orderNbr}</span><span style="font-weight:800;font-size:13px;color:${del?'#6b7280':'#ca8a04'};background:${del?'#37415130':'#ca8a0420'};padding:0 4px;border-radius:3px">${r._sL||r.shipmentsRemaining}</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-weight:700;font-size:11px">${del?'✓ ':''}${esc(r.orderNbr)}</span><span style="font-weight:800;font-size:13px;color:${del?'#6b7280':'#ca8a04'};background:${del?'#37415130':'#ca8a0420'};padding:0 4px;border-radius:3px">${r._sL||r.shipmentsRemaining}</span></div>
           <div style="font-size:10px;color:${del?'#4b5563':'#94a3b8'};margin-top:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(r.account.replace('TxDOT ',''))}</div>
-          ${del?'<div style="font-size:9px;color:#6b7280;margin-top:1px;font-weight:600">✓ DELIVERED</div>':`<div style="font-size:9px;color:${c}99;margin-top:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(r.product.length>30?r.product.slice(0,30)+'…':r.product)}</div>`}
+          ${del?`<div style="font-size:9px;color:#6b7280;margin-top:1px;font-weight:600">✓ DELIVERED</div>`:`<div style="font-size:9px;color:${c}99;margin-top:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(r.product.length>30?r.product.slice(0,30)+'…':r.product)}</div>`}
           ${!del&&r._sC?`<div style="font-size:9px;color:#22c55e;margin-top:1px">🚛 ${esc(r._sC)}</div>`:''}
         </div>`;
       });
-      h+=`</td>`;cells++;
+      h+=`</td>`; cells++;
     }
     while(cells%7!==0){h+=`<td class="cal-cell" style="background:#0a0e17"></td>`;cells++;}
     h+=`</tr></tbody></table>`;
@@ -242,7 +393,7 @@ function render(){
           <div><div style="font-size:11px;font-weight:600;color:#22c55e">${r.completedDate||''}</div><div style="font-size:9px;color:#94a3b8">${r.completedTime||''}</div></div>
           <span style="color:#f8fafc;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(r.account.replace('TxDOT ',''))}</span>
           <span style="color:#94a3b8;font-size:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(r.location)}</span>
-          <span style="color:#60a5fa;font-weight:600">${r.orderNbr}</span>
+          <span style="color:#60a5fa;font-weight:600">${esc(r.orderNbr)}</span>
           <span class="tag" style="background:${pC(r.product)}18;color:${pC(r.product)}">${esc(r.product.length>25?r.product.slice(0,25)+'…':r.product)}</span>
           <span style="font-weight:700;color:#f8fafc;text-align:center">${r.deliveredLoads||r.shipmentsRemaining}</span>
           <span style="font-size:10px;color:${pCol(r.requiredBy)}">${fDS(r.requiredBy)}</span>
@@ -268,7 +419,7 @@ function render(){
 
   // ===== DASHBOARD =====
   else if(s.tab==='dashboard'){
-    const grp={};state.data.filter(r=>r.shipmentsRemaining>0).forEach(r=>{if(!grp[r.account])grp[r.account]=0;grp[r.account]+=r.shipmentsRemaining;});
+    const grp={}; state.data.filter(r=>r.shipmentsRemaining>0).forEach(r=>{ if(!grp[r.account]) grp[r.account]=0; grp[r.account]+=r.shipmentsRemaining; });
     const maxR=Math.max(...Object.values(grp),1);
     h+=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px">`;
     h+=`<div style="background:#111827;border:1px solid #1e293b;border-radius:10px;padding:18px"><div style="font-size:14px;font-weight:700;color:#f8fafc;margin-bottom:12px">Remaining by Customer</div>`;
@@ -277,6 +428,7 @@ function render(){
     });
     h+=`</div>`;
     h+=`<div style="background:#111827;border:1px solid #1e293b;border-radius:10px;padding:18px"><div style="font-size:14px;font-weight:700;color:#f8fafc;margin-bottom:12px">Terminal Breakdown</div>`;
+    const terms=[...new Set(state.data.map(r=>r.terminal))].sort();
     terms.forEach(t=>{
       const td=state.data.filter(r=>r.terminal===t);
       h+=`<div style="background:#0a0e17;border-radius:8px;padding:14px;margin-bottom:10px;border:1px solid #1e293b"><div style="font-size:14px;font-weight:700;color:#f8fafc;margin-bottom:8px">${esc(t)}</div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">${[['Ordered',td.reduce((s,r)=>s+r.orderedQty,0),'#f8fafc'],['Shipped',td.reduce((s,r)=>s+r.shipments,0),'#22c55e'],['Remaining',td.reduce((s,r)=>s+r.shipmentsRemaining,0),'#ca8a04']].map(([l,v,c])=>`<div><div style="font-size:20px;font-weight:700;color:${c}">${v}</div><div style="font-size:10px;color:#64748b">${l}</div></div>`).join('')}</div></div>`;
@@ -284,17 +436,7 @@ function render(){
     h+=`</div></div>`;
   }
 
-  // ===== UPLOAD =====
-  else if(s.tab==='upload'){
-    h+=`<div style="max-width:700px;margin:20px auto"><div style="background:#111827;border:2px dashed #1e293b;border-radius:12px;padding:36px;cursor:pointer;text-align:center" onclick="document.getElementById('csvFile').click()"><div style="font-size:40px;margin-bottom:8px">📁</div><div style="font-size:16px;font-weight:700;color:#f8fafc;margin-bottom:6px">Upload Daily Data</div><div style="font-size:13px;color:#94a3b8;margin-bottom:14px">CSV file. Replaces data, preserves your schedule inputs.</div><div style="display:inline-block;padding:8px 22px;border-radius:6px;background:#c2410c;color:#fff;font-weight:600;font-size:13px">Choose File</div><input type="file" id="csvFile" accept=".csv,.txt" style="display:none" onchange="handleUpload(this)"></div>`;
-    h+=`<div id="uploadMsg"></div>`;
-    h+=`<div style="margin-top:24px;background:#111827;border:1px solid #1e293b;border-radius:10px;padding:18px"><div style="font-size:14px;font-weight:700;color:#f8fafc;margin-bottom:12px">Upload History</div>`;
-    if(!s.uploadHistory.length)h+=`<div style="font-size:13px;color:#94a3b8;text-align:center;padding:20px">No previous uploads.</div>`;
-    else{s.uploadHistory.forEach((v,i)=>{h+=`<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #1e293b20;font-size:12px"><span style="color:#94a3b8">${v.date}</span><span style="color:#f8fafc;font-weight:500">${esc(v.filename)}</span><span style="color:#22c55e">${v.recordCount} records</span></div>`;});}
-    h+=`</div></div>`;
-  }
-
-  h+=`</div>`;// close main
+  h+=`</div>`; // close main
   document.getElementById('app').innerHTML=h;
 }
 
@@ -302,28 +444,28 @@ function render(){
 let dragData=null;
 window.calDragStart=function(id,si){dragData={id,si};};
 window.calDrop=function(ds){
-  if(!dragData)return;
-  const{id,si}=dragData;
-  if(si>=0){const arr=[...(state.schedules[id]||[])];if(arr[si])arr[si]={...arr[si],date:ds};state.schedules[id]=arr;}
+  if(!dragData) return;
+  const {id,si}=dragData;
+  if(si>=0){ const arr=[...(state.schedules[id]||[])]; if(arr[si]) arr[si]={...arr[si],date:ds}; state.schedules[id]=arr; }
   else upd(id,'estDelivery',ds);
-  dragData=null;save();render();
+  dragData=null; save(); render();
 };
 // Detail popup
 window.showDetail=function(id,si,ds){
-  const r=state.data.find(x=>x._id===id);if(!r)return;
-  const ui=state.inputs[id]||{};const del=isEntryDelivered(id,si,ds);const od=ovd(r.requiredBy);
-  const sched=state.schedules[id];const schedEntry=sched&&si>=0?sched[si]:null;
+  const r=state.data.find(x=>x._id===id); if(!r) return;
+  const ui=state.inputs[id]||{}; const del=isEntryDelivered(id,si,ds); const od=ovd(r.requiredBy);
+  const sched=state.schedules[id]; const schedEntry=sched&&si>=0?sched[si]:null;
   const loadQty=schedEntry?schedEntry.loads:r.shipmentsRemaining;
-  const carrier=schedEntry?.carrier||ui.carrier||'';const trailer=schedEntry?.trailerType||ui.trailerType||'';
+  const carrier=schedEntry?.carrier||ui.carrier||''; const trailer=schedEntry?.trailerType||ui.trailerType||'';
   let m=`<div class="overlay" onclick="closeDetail()"><div class="modal" onclick="event.stopPropagation()">`;
-  m+=`<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px"><div><div style="font-size:18px;font-weight:700;color:#f8fafc">${r.orderNbr}</div><span class="tag" style="background:${pC(r.product)}18;color:${pC(r.product)};font-size:12px;margin-top:4px">${esc(r.product)}</span></div><button onclick="closeDetail()" style="background:none;border:none;color:#94a3b8;font-size:22px;cursor:pointer">✕</button></div>`;
-  if(od>0)m+=`<div style="background:#dc262615;border:1px solid #dc262640;border-radius:6px;padding:8px 12px;margin-bottom:14px;display:flex;align-items:center;gap:8px"><span style="font-size:20px">⚠️</span><span style="color:#dc2626;font-weight:600;font-size:13px">${od} days overdue</span></div>`;
+  m+=`<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px"><div><div style="font-size:18px;font-weight:700;color:#f8fafc">${esc(r.orderNbr)}</div><span class="tag" style="background:${pC(r.product)}18;color:${pC(r.product)};font-size:12px;margin-top:4px">${esc(r.product)}</span></div><button onclick="closeDetail()" style="background:none;border:none;color:#94a3b8;font-size:22px;cursor:pointer">✕</button></div>`;
+  if(od>0) m+=`<div style="background:#dc262615;border:1px solid #dc262640;border-radius:6px;padding:8px 12px;margin-bottom:14px;display:flex;align-items:center;gap:8px"><span style="font-size:20px">⚠️</span><span style="color:#dc2626;font-weight:600;font-size:13px">${od} days overdue</span></div>`;
   m+=`<div style="background:#0a0e17;border-radius:8px;padding:4px 14px;margin-bottom:12px">`;
-  [['Customer',r.account],['Delivery Location',r.location],['Terminal',r.terminal]].forEach(([l,v])=>{m+=`<div class="detail-row"><span class="detail-label">${l}</span><span class="detail-value">${esc(v)}</span></div>`;});
+  [['Customer',r.account],['Delivery Location',r.location],['Terminal',r.terminal]].forEach(([l,v])=>{ m+=`<div class="detail-row"><span class="detail-label">${l}</span><span class="detail-value">${esc(v)}</span></div>`;});
   m+=`</div><div style="background:#0a0e17;border-radius:8px;padding:4px 14px;margin-bottom:12px">`;
-  [['Required By',fD(r.requiredBy),pCol(r.requiredBy)],['Loads This Entry',loadQty,'#ca8a04'],['Total Ordered',r.orderedQty],['Shipments Completed',r.shipments,'#22c55e'],['Total Remaining',r.shipmentsRemaining,'#ca8a04']].forEach(([l,v,c])=>{m+=`<div class="detail-row"><span class="detail-label">${l}</span><span class="detail-value" style="color:${c||'#e2e8f0'}">${v}</span></div>`;});
+  [['Required By',fD(r.requiredBy),pCol(r.requiredBy)],['Loads This Entry',loadQty,'#ca8a04'],['Total Ordered',r.orderedQty],['Shipments Completed',r.shipments,'#22c55e'],['Total Remaining',r.shipmentsRemaining,'#ca8a04']].forEach(([l,v,c])=>{ m+=`<div class="detail-row"><span class="detail-label">${l}</span><span class="detail-value" style="color:${c||'#e2e8f0'}">${v}</span></div>`;});
   m+=`</div><div style="background:#0a0e17;border-radius:8px;padding:4px 14px;margin-bottom:12px">`;
-  [['Scheduled Date',fD(ds),'#3b82f6'],['Carrier',carrier||'Not assigned'],['Trailer Type',trailer||'Not set']].forEach(([l,v,c])=>{m+=`<div class="detail-row"><span class="detail-label">${l}</span><span class="detail-value" style="color:${c||'#e2e8f0'}">${esc(v)}</span></div>`;});
+  [['Scheduled Date',fD(ds),'#3b82f6'],['Carrier',carrier||'Not assigned'],['Trailer Type',trailer||'Not set']].forEach(([l,v,c])=>{ m+=`<div class="detail-row"><span class="detail-label">${l}</span><span class="detail-value" style="color:${c||'#e2e8f0'}">${esc(v)}</span></div>`;});
   m+=`</div>`;
   // Delivered button
   m+=`<div style="margin-top:16px;padding-top:14px;border-top:1px solid #1e293b">`;
@@ -337,42 +479,41 @@ window.showDetail=function(id,si,ds){
 };
 window.closeDetail=function(){const o=document.querySelector('.overlay');if(o)o.remove();};
 window.deliverFromDetail=function(id,si,ds){
-  const r=state.data.find(x=>x._id===id);if(!r)return;
-  const sched=state.schedules[id];const se=sched&&si>=0?sched[si]:null;
+  const r=state.data.find(x=>x._id===id); if(!r) return;
+  const sched=state.schedules[id]; const se=sched&&si>=0?sched[si]:null;
   markDelivered({...r,_si:si,_sL:se?se.loads:r.shipmentsRemaining,_sC:se?.carrier||'',_sT:se?.trailerType||''},ds);
   closeDetail();
 };
 window.undoDeliveryFromDetail=function(id,si,ds){
-  const idx=state.completedLoads.findIndex(c=>c._id===id&&c._entrySchedIdx===(si!=null?si:-1)&&c._entryDate===(ds||''));
-  if(idx>=0)undoCompleted(idx);
-  else{state.deliveredEntries=state.deliveredEntries.filter(e=>!(e.id===id&&e.schedIdx===(si!=null?si:-1)&&e.date===(ds||'')));save();}
-  closeDetail();render();
+  const idx=state.completedLoads.findIndex(c=>c._id===id && c._entrySchedIdx===(si!=null?si:-1) && c._entryDate===(ds||''));
+  if(idx>=0) undoCompleted(idx);
+  else { state.deliveredEntries=state.deliveredEntries.filter(e=>!(e.id===id&&e.schedIdx===(si!=null?si:-1)&&e.date===(ds||''))); save(); }
+  closeDetail(); render();
 };
 // Scheduler
 window.openScheduler=function(id){
-  const r=state.data.find(x=>x._id===id);if(!r)return;
+  const r=state.data.find(x=>x._id===id); if(!r) return;
   state.schedulerItem=r;
   const ex=state.schedules[id]||[];
   state.schedulerRows=ex.length?ex.map(s=>({...s})):[{date:'',loads:'',carrier:'',trailerType:''}];
   renderScheduler();
 };
 function renderScheduler(){
-  const r=state.schedulerItem;if(!r)return;
+  const r=state.schedulerItem; if(!r) return;
   const rows=state.schedulerRows;
   const tot=rows.reduce((a,x)=>a+(parseInt(x.loads)||0),0);
-  const rem=r.shipmentsRemaining-tot;const over=tot>r.shipmentsRemaining;
+  const rem=r.shipmentsRemaining-tot; const over=tot>r.shipmentsRemaining;
   let m=`<div class="overlay" onclick="closeScheduler()"><div class="modal" onclick="event.stopPropagation()">`;
-  m+=`<div style="display:flex;justify-content:space-between;margin-bottom:12px"><div><div style="font-size:18px;font-weight:700;color:#f8fafc">Schedule Loads</div><div style="font-size:13px;color:#94a3b8;margin-top:2px">${r.orderNbr} — ${esc(r.account)}</div></div><button onclick="closeScheduler()" style="background:none;border:none;color:#94a3b8;font-size:22px;cursor:pointer">✕</button></div>`;
+  m+=`<div style="display:flex;justify-content:space-between;margin-bottom:12px"><div><div style="font-size:18px;font-weight:700;color:#f8fafc">Schedule Loads</div><div style="font-size:13px;color:#94a3b8;margin-top:2px">${esc(r.orderNbr)} — ${esc(r.account)}</div></div><button onclick="closeScheduler()" style="background:none;border:none;color:#94a3b8;font-size:22px;cursor:pointer">✕</button></div>`;
   m+=`<div style="display:flex;gap:16px;margin-bottom:14px;padding:10px 14px;background:#0a0e17;border-radius:8px"><div><div style="font-size:10px;color:#64748b">TOTAL</div><div style="font-size:20px;font-weight:700;color:#f8fafc">${r.shipmentsRemaining}</div></div><div><div style="font-size:10px;color:#64748b">ASSIGNED</div><div style="font-size:20px;font-weight:700;color:${over?'#dc2626':'#22c55e'}">${tot}</div></div><div><div style="font-size:10px;color:#64748b">UNASSIGNED</div><div style="font-size:20px;font-weight:700;color:${rem>0?'#ca8a04':rem===0?'#22c55e':'#dc2626'}">${rem}</div></div></div>`;
-  if(over)m+=`<div style="background:#dc262615;border:1px solid #dc262640;border-radius:6px;padding:8px 12px;margin-bottom:12px;color:#dc2626;font-weight:600;font-size:12px">⚠️ Over-allocated by ${tot-r.shipmentsRemaining}</div>`;
+  if(over) m+=`<div style="background:#dc262615;border:1px solid #dc262640;border-radius:6px;padding:8px 12px;margin-bottom:12px;color:#dc2626;font-weight:600;font-size:12px">⚠️ Over-allocated by ${tot-r.shipmentsRemaining}</div>`;
   m+=`<div style="display:grid;grid-template-columns:130px 70px 130px 120px 36px;gap:8px;font-size:10px;color:#64748b;font-weight:600;text-transform:uppercase;margin-bottom:6px"><span>Date</span><span>Loads</span><span>Carrier</span><span>Trailer</span><span></span></div>`;
   rows.forEach((row,i)=>{
     m+=`<div style="display:grid;grid-template-columns:130px 70px 130px 120px 36px;gap:8px;margin-bottom:6px;align-items:center"><input type="date" value="${row.date||''}" onchange="schedRowUpd(${i},'date',this.value)"><input type="number" min="1" value="${row.loads||''}" placeholder="0" style="font-weight:700;color:#ca8a04" onchange="schedRowUpd(${i},'loads',this.value)"><input type="text" value="${esc(row.carrier||'')}" placeholder="Carrier" onchange="schedRowUpd(${i},'carrier',this.value)"><select onchange="schedRowUpd(${i},'trailerType',this.value)">${optionsHtml(TRAILERS,row.trailerType||'')}</select><button class="btn" style="color:#dc2626;border-color:#dc262640;padding:2px 8px;font-size:14px" onclick="schedRowDel(${i})">✕</button></div>`;
   });
   m+=`<div style="display:flex;justify-content:space-between;margin-top:12px"><button class="btn" style="color:#3b82f6;border-color:#3b82f6" onclick="schedRowAdd()">+ Add Date</button><div style="display:flex;gap:8px"><button class="btn" style="color:#dc2626;border-color:#dc2626" onclick="schedClear()">Clear</button><button class="btn btn-accent" ${over?'disabled style="opacity:.5;cursor:not-allowed"':''} onclick="schedSave()">Save Schedule</button></div></div>`;
   m+=`</div></div>`;
-  // Remove existing overlay
-  const old=document.querySelector('.overlay');if(old)old.remove();
+  const old=document.querySelector('.overlay'); if(old) old.remove();
   document.getElementById('app').insertAdjacentHTML('beforeend',m);
 }
 window.closeScheduler=function(){state.schedulerItem=null;const o=document.querySelector('.overlay');if(o)o.remove();};
@@ -384,46 +525,13 @@ window.schedSave=function(){
   const r=state.schedulerItem;if(!r)return;
   const valid=state.schedulerRows.filter(s=>s.date&&parseInt(s.loads)>0).map(s=>({date:s.date,loads:parseInt(s.loads),carrier:s.carrier||'',trailerType:s.trailerType||''}));
   state.schedules[r._id]=valid;
-  if(valid.length)upd(r._id,'estDelivery',valid[0].date);
-  save();closeScheduler();render();
-};
-// Upload handler
-window.handleUpload=function(input){
-  const file=input.files[0];if(!file)return;
-  const reader=new FileReader();
-  reader.onload=function(e){
-    const text=e.target.result;
-    const lines=text.split('\n');
-    const parseLine=l=>{const r=[];let c='',q=false;for(let i=0;i<l.length;i++){const ch=l[i];if(ch==='"')q=!q;else if(ch===','&&!q){r.push(c.trim());c='';}else c+=ch;}r.push(c.trim());return r;};
-    const hdr=parseLine(lines[0].replace(/^\uFEFF/,'')).map(h=>h.replace(/"/g,''));
-    const rows=[];
-    for(let i=1;i<lines.length;i++){
-      const l=lines[i].trim().replace(/\r$/,'');if(!l)continue;
-      const vals=parseLine(l);const obj={};hdr.forEach((h,j)=>obj[h]=(vals[j]||'').replace(/"/g,''));
-      const acct=obj['Account Name_2']||'';if(!acct)continue;
-      let rBy='';const rb=obj['Required By']||'';
-      if(rb){const m=rb.match(/(\d{1,2})\/(\d{1,2})\/(\d{4})/);if(m)rBy=m[3]+'-'+m[1].padStart(2,'0')+'-'+m[2].padStart(2,'0');}
-      let sr=parseInt(obj['Shipments Remaining']||'0')||0;
-      if(!sr){Object.keys(obj).forEach(k=>{const v=obj[k].trim();if(!k.trim()&&/^\d+$/.test(v)&&parseInt(v)>0)sr=parseInt(v);});}
-      let term=obj['Terminal Key']||'';if(!term)Object.keys(obj).forEach(k=>{if(!k.trim()&&obj[k].includes('TX'))term=obj[k].trim();});
-      rows.push({account:acct.trim(),location:(obj['Location Name_3']||'').trim(),orderNbr:(obj['Related Order Nbr']||'').trim(),product:(obj['Product']||'').trim(),orderedQty:parseInt(obj['Ordered Qty.']||'0')||0,shipments:parseInt(obj['Shipments']||'0')||0,shipmentsRemaining:sr,requiredBy:rBy,terminal:term.trim()});
-    }
-    if(rows.length){
-      state.uploadHistory.unshift({date:new Date().toLocaleString(),filename:file.name,recordCount:rows.length});
-      const newData=rows.map((r,i)=>({...r,_id:i}));
-      const newIn={},newSc={};
-      newData.forEach(nr=>{const old=state.data.find(o=>o.orderNbr===nr.orderNbr&&o.account===nr.account&&o.product===nr.product);if(old){if(state.inputs[old._id])newIn[nr._id]=state.inputs[old._id];if(state.schedules[old._id])newSc[nr._id]=state.schedules[old._id];}});
-      state.data=newData;state.inputs=newIn;state.schedules=newSc;
-      save();render();
-      document.getElementById('uploadMsg').innerHTML=`<div style="margin-top:14px;padding:10px 14px;border-radius:8px;background:#16a34a20;color:#22c55e;font-size:13px;font-weight:500">Loaded ${rows.length} records from ${file.name}. Inputs preserved.</div>`;
-    }
-    input.value='';
-  };
-  reader.readAsText(file);
+  if(valid.length) upd(r._id,'estDelivery',valid[0].date);
+  save(); closeScheduler(); render();
 };
 
-// Initial render
+// Initial render (embedded fallback), then load shared CSV and refresh
 render();
+initDataFromCsv();
 </script>
 </body>
 </html>
