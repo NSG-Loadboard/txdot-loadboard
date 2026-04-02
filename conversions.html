@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NSG Logistics — Conversions & Storage Calculator</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0A1628;--card:#111E30;--card2:#0E1A2B;--border:#1A3050;--border2:#2A3A4E;--text:#E0E8F0;--text2:#C0D0E0;--text3:#8A9BAE;--text4:#6B8299;--text5:#5A7088;--text6:#3A4F65;--amber:#F59E0B;--amber2:#D97706;--green:#10B981;--green2:#4ADE80;--green3:#6B9B5A;--red:#EF4444;--blue:#3B82F6;--blue2:#4A90D9;--orange:#F97316;--purple:#8B5CF6;--teal:#14B8A6}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh}
+input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+input[type=number]{-moz-appearance:textfield}
+select{-webkit-appearance:none;-moz-appearance:none;appearance:none}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+.header{background:linear-gradient(135deg,#0D1F33,#142A42,#0D1F33);border-bottom:1px solid var(--border);padding:20px 28px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--amber),var(--amber2));display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:var(--bg);font-family:'Space Mono',monospace;flex-shrink:0;text-decoration:none}
+.header-info .ht{font-size:20px;font-weight:700;letter-spacing:-0.02em;color:#F0F4F8}
+.header-info .hs{font-size:13px;color:var(--text4);font-weight:500}
+.nav{margin-left:auto;display:flex;gap:4px;background:#0B1626;border-radius:10px;padding:4px;border:1px solid var(--border)}
+.nav a{padding:8px 16px;border-radius:8px;font-size:12px;font-weight:600;letter-spacing:0.04em;text-decoration:none;color:var(--text4);transition:all 0.2s;white-space:nowrap}
+.nav a:hover{color:var(--text2)}
+.nav a.active{background:var(--amber);color:var(--bg)}
+
+.container{max-width:840px;margin:0 auto;padding:28px 24px}
+.card{background:linear-gradient(180deg,var(--card),var(--card2));border-radius:14px;border:1px solid var(--border);padding:24px;margin-bottom:20px;animation:fadeIn 0.4s ease}
+.sh{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.sd{width:8px;height:8px;border-radius:50%}
+.st{font-size:15px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text2)}
+
+.row{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+.row:last-child{margin-bottom:0}
+
+.field{position:relative;flex:1;min-width:160px}
+.field label{display:block;font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text3);margin-bottom:6px}
+.field input,.field select{width:100%;padding:12px 14px;border:1px solid var(--border2);border-radius:8px;font-size:14px;font-family:'DM Sans',sans-serif;background:#0D1B2A;color:var(--text);outline:none;transition:border-color 0.2s,box-shadow 0.2s}
+.field input:focus,.field select:focus{border-color:var(--amber);box-shadow:0 0 0 3px rgba(245,158,11,0.15)}
+.field select{cursor:pointer;padding-right:36px}
+.sel-arrow{position:absolute;right:14px;bottom:15px;pointer-events:none;color:var(--text5);font-size:12px}
+.nf input{font-family:'Space Mono',monospace}
+
+.res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+.res-card{background:#0B1626;border-radius:10px;padding:16px;text-align:center;border:1px solid rgba(245,158,11,0.1)}
+.res-label{font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text4);margin-bottom:6px}
+.res-value{font-size:20px;font-weight:700;font-family:'Space Mono',monospace;color:var(--amber);word-break:break-all}
+.res-unit{font-size:11px;color:var(--text5);margin-top:2px}
+
+/* Commodity table */
+.ctbl{width:100%;border-collapse:collapse;font-size:13px}
+.ctbl th{padding:12px 14px;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text4);border-bottom:2px solid #1F3050;font-family:'DM Sans',sans-serif;text-align:left;white-space:nowrap}
+.ctbl th:not(:first-child){text-align:right}
+.ctbl td{padding:11px 14px;border-bottom:1px solid #152030;color:var(--text2);font-family:'Space Mono',monospace;font-size:12px}
+.ctbl td:first-child{font-family:'DM Sans',sans-serif;font-weight:600;font-size:13px}
+.ctbl td:not(:first-child){text-align:right}
+.ctbl tr:hover{background:rgba(245,158,11,0.04)}
+.ctbl tr.sel{background:rgba(245,158,11,0.08)}
+.ctbl tr.sel td{color:var(--amber)}
+.ctbl tr.sel td:first-child{color:var(--text)}
+
+/* Storage results */
+.stor-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:20px}
+.stor-card{background:#0B1626;border-radius:10px;padding:16px;text-align:center}
+.stor-card.primary{border:1px solid rgba(20,184,166,0.25)}
+.stor-card.secondary{border:1px solid rgba(245,158,11,0.12)}
+.stor-label{font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text4);margin-bottom:6px}
+.stor-value{font-size:22px;font-weight:700;font-family:'Space Mono',monospace;line-height:1.1}
+.stor-unit{font-size:11px;color:var(--text5);margin-top:3px}
+
+.nb{margin-top:14px;padding:12px 14px;background:#0B1424;border-radius:8px;font-size:12px;color:var(--text5);line-height:1.6}
+.hl{font-weight:600;font-family:'Space Mono',monospace}
+.am{color:var(--amber)}.gn{color:var(--green2)}.tl{color:var(--teal)}
+.footer{margin-top:20px;text-align:center;font-size:11px;color:var(--text6);padding:16px}
+
+/* Diagram */
+.diagram-wrap{display:flex;justify-content:center;margin:20px 0 10px}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <a class="logo" href="index.html">N</a>
+  <div class="header-info">
+    <div class="ht">NSG Logistics</div>
+    <div class="hs">Conversions & Storage Calculator</div>
+  </div>
+  <div class="nav">
+    <a href="index.html">Rate Calc</a>
+    <a href="conversions.html" class="active">Conversions & Storage</a>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- UNIT CONVERTER -->
+  <div class="card">
+    <div class="sh"><div class="sd" style="background:#10B981;box-shadow:0 0 8px rgba(16,185,129,0.5)"></div><h2 class="st">Weight Conversion</h2></div>
+    <div class="row">
+      <div class="field nf" style="min-width:180px">
+        <label>Value</label>
+        <input type="number" id="conv-val" min="0" step="any" placeholder="Enter weight...">
+      </div>
+      <div class="field" style="min-width:160px">
+        <label>Unit</label>
+        <select id="conv-unit">
+          <option value="lbs">Pounds (lbs)</option>
+          <option value="tons">Short Tons (US)</option>
+          <option value="mt">Metric Tons</option>
+          <option value="kg">Kilograms (kg)</option>
+          <option value="bu" disabled id="bu-opt">Bushels (select commodity)</option>
+        </select>
+        <span class="sel-arrow">▾</span>
+      </div>
+      <div class="field" style="min-width:160px">
+        <label>Commodity (for bushels)</label>
+        <select id="conv-comm">
+          <option value="">— None —</option>
+          <option value="corn">Corn</option>
+          <option value="clean_corn">Clean Corn</option>
+          <option value="wheat">Wheat</option>
+          <option value="soybeans">Soybeans</option>
+          <option value="oats">Oats</option>
+          <option value="whole_peas">Whole Peas</option>
+          <option value="soybean_meal">Soybean Meal</option>
+          <option value="sodium_bicarb">Sodium Bi-Carbonate</option>
+          <option value="soy_hull_pellets">Soy Hull Pellets</option>
+          <option value="canola_pellets">Canola Pellets</option>
+          <option value="canola_meal">Canola Meal</option>
+        </select>
+        <span class="sel-arrow">▾</span>
+      </div>
+    </div>
+    <div class="res-grid" id="conv-results">
+      <div class="res-card"><div class="res-label">Pounds</div><div class="res-value" id="cv-lbs">—</div></div>
+      <div class="res-card"><div class="res-label">Short Tons</div><div class="res-value" id="cv-tons">—</div></div>
+      <div class="res-card"><div class="res-label">Metric Tons</div><div class="res-value" id="cv-mt">—</div></div>
+      <div class="res-card"><div class="res-label">Kilograms</div><div class="res-value" id="cv-kg">—</div></div>
+      <div class="res-card" id="cv-bu-card" style="display:none"><div class="res-label">Bushels</div><div class="res-value" id="cv-bu">—</div><div class="res-unit" id="cv-bu-comm"></div></div>
+    </div>
+  </div>
+
+  <!-- COMMODITY REFERENCE TABLE -->
+  <div class="card">
+    <div class="sh"><div class="sd" style="background:#F97316;box-shadow:0 0 8px rgba(249,115,22,0.5)"></div><h2 class="st">Commodity Properties</h2></div>
+    <div style="overflow-x:auto">
+      <table class="ctbl">
+        <thead>
+          <tr>
+            <th>Commodity</th>
+            <th>Test Weight<br>(lbs/bu)</th>
+            <th>Bulk Density<br>(lbs/ft³)</th>
+            <th>Angle of<br>Repose (°)</th>
+          </tr>
+        </thead>
+        <tbody id="comm-tbody"></tbody>
+      </table>
+    </div>
+    <div class="nb">Test weights are USDA standard where applicable. Bulk densities represent typical loose-fill values. Angle of repose values are for dry, free-flowing material at standard conditions. Actual values may vary with moisture content, particle size, and compaction.</div>
+  </div>
+
+  <!-- FLAT STORAGE CALCULATOR -->
+  <div class="card">
+    <div class="sh"><div class="sd" style="background:#14B8A6;box-shadow:0 0 8px rgba(20,184,166,0.5)"></div><h2 class="st">Flat Storage Calculator</h2></div>
+    <p style="font-size:13px;color:var(--text4);margin-bottom:20px;line-height:1.5">Calculate the floor area required to store a given tonnage in a flat storage building. The pile forms a cone shape based on angle of repose, with material filling to wall height before forming the peak above.</p>
+
+    <div class="row">
+      <div class="field" style="min-width:180px">
+        <label>Commodity</label>
+        <select id="stor-comm">
+          <option value="corn">Corn</option>
+          <option value="clean_corn">Clean Corn</option>
+          <option value="wheat">Wheat</option>
+          <option value="soybeans">Soybeans</option>
+          <option value="oats">Oats</option>
+          <option value="whole_peas">Whole Peas</option>
+          <option value="soybean_meal">Soybean Meal</option>
+          <option value="sodium_bicarb">Sodium Bi-Carbonate</option>
+          <option value="soy_hull_pellets">Soy Hull Pellets</option>
+          <option value="canola_pellets">Canola Pellets</option>
+          <option value="canola_meal">Canola Meal</option>
+        </select>
+        <span class="sel-arrow">▾</span>
+      </div>
+      <div class="field nf" style="min-width:140px">
+        <label>Tons to Store</label>
+        <input type="number" id="stor-tons" min="0" step="any" placeholder="e.g. 5000">
+      </div>
+    </div>
+    <div class="row">
+      <div class="field nf" style="min-width:140px">
+        <label>Building Width (ft)</label>
+        <input type="number" id="stor-width" min="0" step="any" placeholder="e.g. 60">
+      </div>
+      <div class="field nf" style="min-width:140px">
+        <label>Wall Height (ft)</label>
+        <input type="number" id="stor-wall" min="0" step="any" placeholder="e.g. 20">
+      </div>
+      <div class="field nf" style="min-width:140px">
+        <label>Building Length (ft)</label>
+        <input type="number" id="stor-length" min="0" step="any" placeholder="Optional — for capacity check">
+      </div>
+    </div>
+
+    <!-- Diagram -->
+    <div class="diagram-wrap"><svg id="stor-svg" width="360" height="180" viewBox="0 0 360 180"></svg></div>
+
+    <!-- Commodity info readout -->
+    <div class="row" style="margin-bottom:20px">
+      <div class="res-card" style="border-color:rgba(20,184,166,0.2)"><div class="res-label">Bulk Density</div><div class="res-value" id="si-dens" style="color:#14B8A6">—</div><div class="res-unit">lbs/ft³</div></div>
+      <div class="res-card" style="border-color:rgba(20,184,166,0.2)"><div class="res-label">Angle of Repose</div><div class="res-value" id="si-aor" style="color:#14B8A6">—</div><div class="res-unit">degrees</div></div>
+      <div class="res-card" style="border-color:rgba(20,184,166,0.2)"><div class="res-label">Peak Height</div><div class="res-value" id="si-peak" style="color:#14B8A6">—</div><div class="res-unit">ft above wall</div></div>
+    </div>
+
+    <!-- Results -->
+    <div class="stor-grid" id="stor-results">
+      <div class="stor-card primary"><div class="stor-label">Required Floor Area</div><div class="stor-value" id="sr-sqft" style="color:#14B8A6">—</div><div class="stor-unit">sq ft</div></div>
+      <div class="stor-card primary"><div class="stor-label">Required Length</div><div class="stor-value" id="sr-len" style="color:#14B8A6">—</div><div class="stor-unit">ft (at given width)</div></div>
+      <div class="stor-card secondary"><div class="stor-label">Total Volume</div><div class="stor-value" id="sr-vol" style="color:var(--amber)">—</div><div class="stor-unit">ft³</div></div>
+      <div class="stor-card secondary"><div class="stor-label">Building Capacity</div><div class="stor-value" id="sr-cap" style="color:var(--amber)">—</div><div class="stor-unit" id="sr-cap-unit">tons (if length given)</div></div>
+    </div>
+
+    <div class="nb" id="stor-note" style="margin-top:14px">
+      Enter commodity, tonnage, building width, and wall height to calculate required floor area. The calculator models the grain pile as a rectangular base filled to wall height, plus a triangular ridge peak formed by the angle of repose running the length of the building.
+    </div>
+  </div>
+
+  <div class="footer">NSG Logistics · Southlake, TX · <span id="yr"></span></div>
+</div>
+
+<script>
+/*
+  Commodity data:
+  [name, testWeight (lbs/bu or null), bulkDensity (lbs/ft³), angleOfRepose (degrees)]
+
+  Sources: USDA standard test weights, Midwest Plan Service, bulk material engineering references.
+  - Corn: 56 lbs/bu standard, ~45 lbs/ft³, 27° AoR
+  - Clean Corn: 56 lbs/bu, ~45 lbs/ft³, 23° AoR (less fines = flows easier)
+  - Wheat: 60 lbs/bu, ~48 lbs/ft³, 25° AoR
+  - Soybeans: 60 lbs/bu, ~48 lbs/ft³, 29° AoR
+  - Oats: 32 lbs/bu, ~26 lbs/ft³, 28° AoR
+  - Whole Peas: 60 lbs/bu, ~50 lbs/ft³, 25° AoR
+  - Soybean Meal: N/A bushels, ~40 lbs/ft³, 35° AoR
+  - Sodium Bicarbonate: N/A, ~62 lbs/ft³, 40° AoR
+  - Soy Hull Pellets: N/A, ~35 lbs/ft³, 32° AoR
+  - Canola Pellets: N/A, ~38 lbs/ft³, 30° AoR
+  - Canola Meal: N/A, ~37 lbs/ft³, 35° AoR
+*/
+const COMM = {
+  corn:             { name:"Corn",                tw:56, bd:45, aor:27 },
+  clean_corn:       { name:"Clean Corn",          tw:56, bd:45, aor:23 },
+  wheat:            { name:"Wheat",               tw:60, bd:48, aor:25 },
+  soybeans:         { name:"Soybeans",             tw:60, bd:48, aor:29 },
+  oats:             { name:"Oats",                 tw:32, bd:26, aor:28 },
+  whole_peas:       { name:"Whole Peas",           tw:60, bd:50, aor:25 },
+  soybean_meal:     { name:"Soybean Meal",         tw:null, bd:40, aor:35 },
+  sodium_bicarb:    { name:"Sodium Bi-Carbonate",  tw:null, bd:62, aor:40 },
+  soy_hull_pellets: { name:"Soy Hull Pellets",     tw:null, bd:35, aor:32 },
+  canola_pellets:   { name:"Canola Pellets",       tw:null, bd:38, aor:30 },
+  canola_meal:      { name:"Canola Meal",          tw:null, bd:37, aor:35 },
+};
+
+// ─── Build commodity table ───
+const commTbody = document.getElementById('comm-tbody');
+commTbody.innerHTML = Object.entries(COMM).map(([k,c]) =>
+  `<tr data-k="${k}"><td>${c.name}</td><td>${c.tw !== null ? c.tw.toFixed(1) : '—'}</td><td>${c.bd.toFixed(1)}</td><td>${c.aor}°</td></tr>`
+).join('');
+
+// ─── Unit Conversion ───
+function updateConv() {
+  const val = parseFloat(document.getElementById('conv-val').value);
+  const unit = document.getElementById('conv-unit').value;
+  const commKey = document.getElementById('conv-comm').value;
+
+  // Enable/disable bushel option
+  const buOpt = document.getElementById('bu-opt');
+  if (commKey && COMM[commKey] && COMM[commKey].tw) {
+    buOpt.disabled = false;
+    buOpt.textContent = 'Bushels (' + COMM[commKey].name + ')';
+  } else {
+    buOpt.disabled = true;
+    buOpt.textContent = 'Bushels (select commodity)';
+    if (unit === 'bu') document.getElementById('conv-unit').value = 'lbs';
+  }
+
+  if (isNaN(val) || val <= 0) {
+    ['cv-lbs','cv-tons','cv-mt','cv-kg','cv-bu'].forEach(id => document.getElementById(id).textContent = '—');
+    return;
+  }
+
+  // Convert everything to lbs first
+  let lbs;
+  switch(unit) {
+    case 'lbs': lbs = val; break;
+    case 'tons': lbs = val * 2000; break;
+    case 'mt': lbs = val * 2204.62; break;
+    case 'kg': lbs = val * 2.20462; break;
+    case 'bu':
+      if (commKey && COMM[commKey] && COMM[commKey].tw) { lbs = val * COMM[commKey].tw; }
+      else { lbs = val; }
+      break;
+    default: lbs = val;
+  }
+
+  const tons = lbs / 2000;
+  const mt = lbs / 2204.62;
+  const kg = lbs / 2.20462;
+
+  function fmt(n) {
+    if (n >= 1000000) return n.toLocaleString(undefined, {maximumFractionDigits:0});
+    if (n >= 100) return n.toLocaleString(undefined, {maximumFractionDigits:2});
+    if (n >= 1) return n.toLocaleString(undefined, {maximumFractionDigits:4});
+    return n.toLocaleString(undefined, {maximumFractionDigits:6});
+  }
+
+  document.getElementById('cv-lbs').textContent = fmt(lbs);
+  document.getElementById('cv-tons').textContent = fmt(tons);
+  document.getElementById('cv-mt').textContent = fmt(mt);
+  document.getElementById('cv-kg').textContent = fmt(kg);
+
+  // Bushels
+  const buCard = document.getElementById('cv-bu-card');
+  if (commKey && COMM[commKey] && COMM[commKey].tw) {
+    buCard.style.display = '';
+    const bu = lbs / COMM[commKey].tw;
+    document.getElementById('cv-bu').textContent = fmt(bu);
+    document.getElementById('cv-bu-comm').textContent = COMM[commKey].name + ' @ ' + COMM[commKey].tw + ' lbs/bu';
+  } else {
+    buCard.style.display = 'none';
+  }
+}
+
+document.getElementById('conv-val').addEventListener('input', updateConv);
+document.getElementById('conv-unit').addEventListener('change', updateConv);
+document.getElementById('conv-comm').addEventListener('change', updateConv);
+
+// ─── Flat Storage Calculator ───
+/*
+  Model: Rectangular building, width W, length L, wall height Hw.
+  Grain fills the rectangular volume up to wall height (W × L × Hw).
+  Above the wall, grain forms a triangular ridge running the length L.
+  Ridge peak height = (W/2) × tan(AoR) — but capped by practical peak.
+  Ridge cross-section = triangle: base=W, height=Hp → area = (W × Hp) / 2
+  Ridge volume = (W × Hp / 2) × L
+
+  Total volume = (W × L × Hw) + (W × Hp / 2 × L) = W × L × (Hw + Hp/2)
+
+  Given tons → total_lbs → volume_needed = total_lbs / bulk_density
+  volume_needed = W × L × (Hw + Hp/2)
+  L_needed = volume_needed / (W × (Hw + Hp/2))
+  sqft_needed = W × L_needed
+*/
+function updateStorage() {
+  const commKey = document.getElementById('stor-comm').value;
+  const c = COMM[commKey];
+  if (!c) return;
+
+  document.getElementById('si-dens').textContent = c.bd.toFixed(1);
+  document.getElementById('si-aor').textContent = c.aor + '°';
+
+  // Highlight commodity table row
+  commTbody.querySelectorAll('tr').forEach(tr => {
+    tr.classList.toggle('sel', tr.dataset.k === commKey);
+  });
+
+  const tonsVal = parseFloat(document.getElementById('stor-tons').value);
+  const W = parseFloat(document.getElementById('stor-width').value);
+  const Hw = parseFloat(document.getElementById('stor-wall').value);
+  const Lgiven = parseFloat(document.getElementById('stor-length').value);
+
+  // Peak height from angle of repose
+  const Hp = W > 0 ? (W / 2) * Math.tan((c.aor * Math.PI) / 180) : 0;
+  document.getElementById('si-peak').textContent = Hp > 0 ? Hp.toFixed(1) : '—';
+
+  // Draw diagram
+  drawDiagram(W, Hw, Hp, c.aor);
+
+  if (isNaN(tonsVal) || tonsVal <= 0 || isNaN(W) || W <= 0 || isNaN(Hw) || Hw <= 0) {
+    ['sr-sqft','sr-len','sr-vol','sr-cap'].forEach(id => document.getElementById(id).textContent = '—');
+    document.getElementById('stor-note').innerHTML = 'Enter commodity, tonnage, building width, and wall height to calculate required floor area. The calculator models the grain pile as a rectangular base filled to wall height, plus a triangular ridge peak formed by the angle of repose running the length of the building.';
+    return;
+  }
+
+  const totalLbs = tonsVal * 2000;
+  const volNeeded = totalLbs / c.bd; // ft³
+  const effectiveHeight = Hw + Hp / 2; // avg height accounting for ridge
+  const Lneeded = volNeeded / (W * effectiveHeight);
+  const sqftNeeded = W * Lneeded;
+
+  function fmt(n) {
+    if (n >= 1000) return n.toLocaleString(undefined, {maximumFractionDigits:0});
+    return n.toLocaleString(undefined, {maximumFractionDigits:1});
+  }
+
+  document.getElementById('sr-sqft').textContent = fmt(sqftNeeded);
+  document.getElementById('sr-len').textContent = fmt(Lneeded);
+  document.getElementById('sr-vol').textContent = fmt(volNeeded);
+
+  // If building length given, calc max capacity
+  if (!isNaN(Lgiven) && Lgiven > 0) {
+    const maxVol = W * Lgiven * effectiveHeight;
+    const maxLbs = maxVol * c.bd;
+    const maxTons = maxLbs / 2000;
+    document.getElementById('sr-cap').textContent = fmt(maxTons);
+    document.getElementById('sr-cap-unit').textContent = 'tons (' + Math.round(W) + '×' + Math.round(Lgiven) + ' ft bldg)';
+  } else {
+    document.getElementById('sr-cap').textContent = '—';
+    document.getElementById('sr-cap-unit').textContent = 'tons (enter length)';
+  }
+
+  // Note
+  const totalH = Hw + Hp;
+  document.getElementById('stor-note').innerHTML =
+    '<span class="hl tl">' + c.name + '</span> at ' + c.bd + ' lbs/ft³ with ' + c.aor + '° angle of repose. ' +
+    'Wall height <span class="hl am">' + Hw + ' ft</span> + ridge peak <span class="hl am">' + Hp.toFixed(1) + ' ft</span> = ' +
+    '<span class="hl am">' + totalH.toFixed(1) + ' ft</span> total peak height. ' +
+    'Effective avg fill height: <span class="hl gn">' + effectiveHeight.toFixed(1) + ' ft</span>. ' +
+    'Required <span class="hl tl">' + fmt(sqftNeeded) + ' sq ft</span> (' + fmt(Lneeded) + ' ft long × ' + W + ' ft wide) to store <span class="hl am">' + fmt(tonsVal) + ' tons</span>.';
+}
+
+function drawDiagram(W, Hw, Hp, aor) {
+  const svg = document.getElementById('stor-svg');
+  if (!W || !Hw || W <= 0 || Hw <= 0) {
+    svg.innerHTML = '<text x="180" y="95" text-anchor="middle" fill="#3A4F65" font-family="DM Sans" font-size="13">Enter dimensions to see cross-section</text>';
+    return;
+  }
+
+  const pad = 40;
+  const svgW = 360, svgH = 180;
+  const drawW = svgW - pad * 2;
+  const totalH = Hw + Hp;
+  const scale = Math.min(drawW / W, (svgH - pad * 1.5) / totalH);
+  const rW = W * scale;
+  const rHw = Hw * scale;
+  const rHp = Hp * scale;
+  const rTotalH = rHw + rHp;
+
+  const cx = svgW / 2;
+  const baseY = svgH - 20;
+  const x1 = cx - rW / 2;
+  const x2 = cx + rW / 2;
+  const wallTopY = baseY - rHw;
+  const peakY = baseY - rTotalH;
+
+  let html = '';
+
+  // Grain fill (wall section)
+  html += `<rect x="${x1}" y="${wallTopY}" width="${rW}" height="${rHw}" fill="rgba(245,158,11,0.15)" stroke="none"/>`;
+
+  // Ridge triangle
+  if (Hp > 0) {
+    html += `<polygon points="${x1},${wallTopY} ${cx},${peakY} ${x2},${wallTopY}" fill="rgba(245,158,11,0.10)" stroke="none"/>`;
+    html += `<line x1="${x1}" y1="${wallTopY}" x2="${cx}" y2="${peakY}" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="4,3"/>`;
+    html += `<line x1="${cx}" y1="${peakY}" x2="${x2}" y2="${wallTopY}" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="4,3"/>`;
+  }
+
+  // Walls
+  html += `<line x1="${x1}" y1="${baseY}" x2="${x1}" y2="${wallTopY}" stroke="#6B8299" stroke-width="2"/>`;
+  html += `<line x1="${x2}" y1="${baseY}" x2="${x2}" y2="${wallTopY}" stroke="#6B8299" stroke-width="2"/>`;
+  html += `<line x1="${x1}" y1="${baseY}" x2="${x2}" y2="${baseY}" stroke="#6B8299" stroke-width="2"/>`;
+
+  // Dimension labels
+  // Wall height
+  html += `<line x1="${x1-12}" y1="${baseY}" x2="${x1-12}" y2="${wallTopY}" stroke="#5A7088" stroke-width="1"/>`;
+  html += `<text x="${x1-16}" y="${(baseY+wallTopY)/2+4}" text-anchor="end" fill="#8A9BAE" font-family="Space Mono" font-size="10">${Hw}′</text>`;
+
+  // Peak height
+  if (Hp > 1) {
+    html += `<line x1="${x2+12}" y1="${wallTopY}" x2="${x2+12}" y2="${peakY}" stroke="#5A7088" stroke-width="1" stroke-dasharray="2,2"/>`;
+    html += `<text x="${x2+16}" y="${(wallTopY+peakY)/2+4}" text-anchor="start" fill="#F59E0B" font-family="Space Mono" font-size="10">${Hp.toFixed(1)}′</text>`;
+  }
+
+  // Width
+  html += `<line x1="${x1}" y1="${baseY+14}" x2="${x2}" y2="${baseY+14}" stroke="#5A7088" stroke-width="1"/>`;
+  html += `<text x="${cx}" y="${baseY+14}" text-anchor="middle" fill="#8A9BAE" font-family="Space Mono" font-size="10" dy="-3">${W}′ wide</text>`;
+
+  // AoR label
+  if (Hp > 1) {
+    const ax = x2 - rW * 0.25;
+    const ay = wallTopY - 8;
+    html += `<text x="${ax}" y="${ay}" text-anchor="middle" fill="#F97316" font-family="Space Mono" font-size="9">${aor}° AoR</text>`;
+  }
+
+  svg.innerHTML = html;
+}
+
+// Wire up events
+['stor-comm','stor-tons','stor-width','stor-wall','stor-length'].forEach(id => {
+  const el = document.getElementById(id);
+  el.addEventListener(el.tagName === 'SELECT' ? 'change' : 'input', updateStorage);
+});
+
+// Sync commodity selectors
+document.getElementById('stor-comm').addEventListener('change', function() {
+  document.getElementById('conv-comm').value = this.value;
+  updateConv();
+});
+
+document.getElementById('yr').textContent = new Date().getFullYear();
+updateConv();
+updateStorage();
+</script>
+</body>
+</html>

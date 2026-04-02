@@ -3,535 +3,274 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NSG - TxDOT Load Board</title>
+<title>NSG Logistics — Freight Rate Calculator</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
+:root{--bg:#0A1628;--card:#111E30;--card2:#0E1A2B;--border:#1A3050;--border2:#2A3A4E;--text:#E0E8F0;--text2:#C0D0E0;--text3:#8A9BAE;--text4:#6B8299;--text5:#5A7088;--text6:#3A4F65;--amber:#F59E0B;--amber2:#D97706;--green:#10B981;--green2:#4ADE80;--green3:#6B9B5A;--red:#EF4444;--blue:#3B82F6;--blue2:#4A90D9;--orange:#F97316;--purple:#8B5CF6}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a0e17;color:#e2e8f0;min-height:100vh}
-::-webkit-scrollbar{width:8px;height:8px}
-::-webkit-scrollbar-track{background:#111827}
-::-webkit-scrollbar-thumb{background:#374151;border-radius:4px}
-.hdr{background:linear-gradient(135deg,#0f1629,#1a1025);border-bottom:1px solid #1e293b;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
-.logo{display:flex;align-items:center;gap:10px}
-.logo-icon{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,#c2410c,#b91c1c);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;color:#fff}
-.tabs{display:flex;gap:3px;background:#111827;border-radius:8px;padding:3px;flex-wrap:wrap}
-.tab{padding:7px 14px;border-radius:6px;border:none;cursor:pointer;font-size:12px;font-weight:600;background:transparent;color:#94a3b8;transition:all .15s}
-.tab.active{background:#c2410c;color:#fff}
-.filter-bar{display:flex;gap:8px;padding:10px 20px;border-bottom:1px solid #1e293b;align-items:center;flex-wrap:wrap;background:#0f1629}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;padding:12px 20px}
-.stat{background:#111827;border:1px solid #1e293b;border-radius:10px;padding:12px 14px}
-.stat-val{font-size:24px;font-weight:700;color:#f8fafc}
-.stat-label{font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:.05em;margin-top:3px}
-.main{padding:0 20px 20px}
-select,input[type=text],input[type=number],input[type=date]{background:#0d1117;border:1px solid #1e293b;border-radius:4px;padding:4px 8px;font-size:12px;color:#e2e8f0;outline:none;font-family:inherit}
-.btn{padding:6px 14px;border-radius:4px;border:1px solid #1e293b;background:transparent;color:#94a3b8;cursor:pointer;font-size:12px;font-weight:600}
-.btn-accent{background:#c2410c;color:#fff;border:none}
-.btn-green{border-color:#16a34a80;color:#22c55e}
-.row{display:grid;gap:3px;align-items:center;padding:6px 8px;background:#111827;border:1px solid #1e293b;border-radius:6px;margin-bottom:3px;font-size:11px}
-.row-hdr{font-size:9px;color:#64748b;text-transform:uppercase;letter-spacing:.04em;font-weight:600;background:#0f1629;position:sticky;top:0;z-index:5}
-.cols{grid-template-columns:32px 130px 160px 110px 1fr 42px 38px 40px 68px 96px 48px 100px 92px 68px}
-.badge{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:20px;border-radius:4px;font-size:11px;font-weight:700;padding:0 5px}
-.tag{display:inline-block;font-size:10px;padding:2px 6px;border-radius:3px;margin-right:3px}
-.overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.55);z-index:100;display:flex;align-items:center;justify-content:center}
-.modal{background:#111827;border:1px solid #374151;border-radius:12px;padding:24px;max-width:620px;width:90%;max-height:80vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.6)}
-.detail-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #1e293b20;font-size:13px}
-.detail-label{color:#94a3b8;font-weight:600;min-width:140px;font-size:12px;text-transform:uppercase;letter-spacing:.04em}
-.detail-value{color:#e2e8f0;text-align:right;flex:1}
-.cal-cell{border:1px solid #1e293b;min-height:140px;padding:5px;vertical-align:top}
-.cal-cell:hover{background:#1a223688}
-.cal-today{border:2px solid #c2410c!important}
-.drag-over{background:rgba(194,65,12,.1)!important;border-color:#c2410c!important}
-.cal-tag{font-size:10px;padding:4px 6px;border-radius:4px;margin-bottom:3px;cursor:pointer;line-height:1.3;transition:background .15s}
-.cal-tag:hover{filter:brightness(1.2)}
-.cal-tag.delivered{opacity:.65;border-left-color:#4b556380!important}
-table.cal{width:100%;border-collapse:collapse;table-layout:fixed}
-.hidden{display:none}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh}
+input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+input[type=number]{-moz-appearance:textfield}
+select{-webkit-appearance:none;-moz-appearance:none;appearance:none}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+.header{background:linear-gradient(135deg,#0D1F33,#142A42,#0D1F33);border-bottom:1px solid var(--border);padding:20px 28px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--amber),var(--amber2));display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:var(--bg);font-family:'Space Mono',monospace;flex-shrink:0;text-decoration:none}
+.header-info .ht{font-size:20px;font-weight:700;letter-spacing:-0.02em;color:#F0F4F8}
+.header-info .hs{font-size:13px;color:var(--text4);font-weight:500}
+.nav{margin-left:auto;display:flex;gap:4px;background:#0B1626;border-radius:10px;padding:4px;border:1px solid var(--border)}
+.nav a{padding:8px 16px;border-radius:8px;font-size:12px;font-weight:600;letter-spacing:0.04em;text-decoration:none;color:var(--text4);transition:all 0.2s;white-space:nowrap}
+.nav a:hover{color:var(--text2)}
+.nav a.active{background:var(--amber);color:var(--bg)}
+
+.container{max-width:840px;margin:0 auto;padding:28px 24px}
+.card{background:linear-gradient(180deg,var(--card),var(--card2));border-radius:14px;border:1px solid var(--border);padding:24px;margin-bottom:20px;animation:fadeIn 0.4s ease}
+.sh{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.sd{width:8px;height:8px;border-radius:50%}
+.st{font-size:15px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text2)}
+
+.row{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+.row:last-child{margin-bottom:0}
+.arrow{display:flex;align-items:flex-end;padding-bottom:8px;color:var(--text6);font-size:22px;font-weight:500;flex-shrink:0}
+
+.field{position:relative;flex:1;min-width:180px}
+.field label{display:block;font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text3);margin-bottom:6px}
+.field input,.field select{width:100%;padding:12px 14px;border:1px solid var(--border2);border-radius:8px;font-size:14px;font-family:'DM Sans',sans-serif;background:#0D1B2A;color:var(--text);outline:none;transition:border-color 0.2s,box-shadow 0.2s}
+.field input:focus,.field select:focus{border-color:var(--amber);box-shadow:0 0 0 3px rgba(245,158,11,0.15)}
+.field input.fsc:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(249,115,22,0.15)}
+.nf input{font-family:'Space Mono',monospace;padding-right:40px}
+.fs{position:absolute;right:14px;bottom:13px;color:var(--text5);font-size:14px;font-weight:600;pointer-events:none}
+.fp{position:absolute;left:14px;bottom:13px;color:var(--text5);font-size:14px;font-weight:600;pointer-events:none}
+.an{font-size:10px;color:var(--text5);margin-top:4px;font-style:italic}
+.sel-arrow{position:absolute;right:14px;bottom:16px;pointer-events:none;color:var(--text5)}
+
+.suggestions{position:absolute;top:100%;left:0;right:0;background:#1B2B3E;border:1px solid var(--border2);border-radius:8px;margin-top:4px;z-index:100;max-height:220px;overflow-y:auto;box-shadow:0 12px 40px rgba(0,0,0,0.5)}
+.sg{padding:10px 14px;cursor:pointer;font-size:13px;border-bottom:1px solid #1F2F42;color:#C0CDD8;transition:background 0.15s,color 0.15s}
+.sg:last-child{border-bottom:none}
+.sg:hover,.sg.active{background:rgba(245,158,11,0.08);color:var(--amber)}
+
+.mb{display:flex;flex-direction:column;align-items:center;padding:12px 20px;background:linear-gradient(135deg,#0F2035,#152840);border-radius:10px;border:1px solid #1F3050;min-width:130px}
+.mb.red{background:linear-gradient(135deg,#1A0F0F,#281515);border-color:#3A2020}
+.mb.orange{background:linear-gradient(135deg,#1A1408,#28200E);border-color:#3A3018}
+.ml{font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text4);margin-bottom:4px}
+.mb.red .ml{color:#9B5555}
+.mb.orange .ml{color:#9B7B44}
+.mv{font-size:26px;font-weight:700;font-family:'Space Mono',monospace;line-height:1.1}
+.mu{font-size:11px;color:var(--text5)}
+.mt{font-size:11px;color:var(--blue2);font-family:'Space Mono',monospace;margin-top:4px;display:flex;align-items:center;gap:4px}
+.ms{font-size:10px;color:var(--text5);margin-top:3px;text-align:center}
+
+.summary{background:linear-gradient(135deg,#142233,#1A2D45);border-radius:14px;border:1px solid rgba(245,158,11,0.2);padding:24px;margin-bottom:20px;animation:fadeIn 0.6s ease}
+.summary-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:8px}
+.summary-t{font-size:15px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--amber)}
+.db{display:flex;align-items:center;gap:6px;background:#0B1626;padding:5px 12px;border-radius:16px;border:1px solid var(--border)}
+.db span{font-size:12px;color:var(--blue2);font-family:'Space Mono',monospace;font-weight:600}
+
+.sg2{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:24px}
+.sc{background:#0B1626;border-radius:10px;padding:14px;text-align:center}
+.scl{font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text4);margin-bottom:6px}
+.scv{font-size:22px;font-weight:700;font-family:'Space Mono',monospace}
+.scu{font-size:10px;color:#4A6078}
+
+.rt{background:#0B1424;border-radius:12px;border:1px solid var(--border);overflow:hidden;margin-bottom:16px}
+.rt table{width:100%;border-collapse:collapse;font-family:'Space Mono',monospace;font-size:13px}
+.rt th{padding:14px 18px;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text4);border-bottom:2px solid #1F3050;font-family:'DM Sans',sans-serif}
+.rt td{padding:14px 18px;border-bottom:1px solid #152030}
+.rt .in{color:var(--text2);font-family:'DM Sans',sans-serif;font-weight:600}
+.rt tfoot td{padding:16px 18px;font-weight:700;background:rgba(245,158,11,0.06)}
+
+.ab{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:linear-gradient(135deg,#1A2A10,#1F3318);border-radius:10px;border:1px solid #2D5A1E;flex-wrap:wrap;gap:12px}
+.abl{font-size:11px;font-weight:600;color:var(--green3);text-transform:uppercase;letter-spacing:0.08em}
+.abd{font-size:10px;color:#4A7A3A;margin-top:2px}
+.abv{font-size:28px;font-weight:700;color:var(--green2);font-family:'Space Mono',monospace}
+.abv small{font-size:14px;color:var(--green3)}
+
+.reft table{width:100%;border-collapse:separate;border-spacing:0;font-family:'Space Mono',monospace;font-size:13px}
+.reft th{padding:12px 16px;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text4);border-bottom:2px solid #1F3050;font-family:'DM Sans',sans-serif}
+.reft td{padding:12px 16px;border-bottom:1px solid #152030;transition:background 0.3s}
+.reft tr.act{background:rgba(245,158,11,0.08)}
+.reft tr.act td{font-weight:700}
+
+.nb{margin-top:14px;padding:12px 14px;background:#0B1424;border-radius:8px;font-size:12px;color:var(--text5);line-height:1.6}
+.hl{font-weight:600;font-family:'Space Mono',monospace}
+.am{color:var(--amber)}.gn{color:var(--green2)}
+.footer{margin-top:20px;text-align:center;font-size:11px;color:var(--text6);padding:16px}
+.ci{display:inline-block;width:10px;height:10px;vertical-align:middle}
 </style>
 </head>
 <body>
-<div id="app"></div>
+
+<div class="header">
+  <a class="logo" href="index.html">N</a>
+  <div class="header-info">
+    <div class="ht">NSG Logistics</div>
+    <div class="hs">Freight Rate Calculator</div>
+  </div>
+  <div class="nav">
+    <a href="index.html" class="active">Rate Calc</a>
+    <a href="conversions.html">Conversions & Storage</a>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- PRIMARY LANE -->
+  <div class="card">
+    <div class="sh"><div class="sd" style="background:#10B981;box-shadow:0 0 8px rgba(16,185,129,0.5)"></div><h2 class="st">Primary Lane</h2></div>
+    <div class="row">
+      <div class="field"><label>Origination City</label><input type="text" id="orig-input" placeholder="Type city name..." autocomplete="off"><div class="suggestions" id="orig-suggestions" style="display:none"></div></div>
+      <div class="arrow">→</div>
+      <div class="field"><label>Destination City</label><input type="text" id="dest-input" placeholder="Type city name..." autocomplete="off"><div class="suggestions" id="dest-suggestions" style="display:none"></div></div>
+    </div>
+    <div class="row" style="align-items:flex-end">
+      <div class="mb"><span class="ml">Loaded Miles</span><span class="mv" id="primary-miles" style="color:#3A4F65">—</span><span class="mu">miles</span><span class="mt" id="primary-time" style="display:none"></span></div>
+      <div class="field nf" style="min-width:140px"><label>Deadhead %</label><input type="number" id="dh-input" min="0" max="200" placeholder="20"><span class="fs">%</span><div class="an" id="dh-auto" style="display:none"></div></div>
+    </div>
+  </div>
+
+  <!-- BACKHAUL -->
+  <div class="card">
+    <div class="sh"><div class="sd" style="background:#3B82F6;box-shadow:0 0 8px rgba(59,130,246,0.5)"></div><h2 class="st">Backhaul / Reload</h2></div>
+    <div class="row">
+      <div class="field"><label>BH Origination City</label><input type="text" id="bh-orig-input" placeholder="BH Origination" autocomplete="off"><div class="suggestions" id="bh-orig-suggestions" style="display:none"></div></div>
+      <div class="arrow">→</div>
+      <div class="field"><label>BH Destination City</label><input type="text" id="bh-dest-input" placeholder="BH Destination" autocomplete="off"><div class="suggestions" id="bh-dest-suggestions" style="display:none"></div></div>
+    </div>
+    <div class="row" style="align-items:flex-end">
+      <div class="mb"><span class="ml">BH Loaded Miles</span><span class="mv" id="bh-loaded-miles" style="color:#3A4F65">—</span><span class="mu">miles</span><span class="mt" id="bh-loaded-time" style="display:none"></span></div>
+      <div class="mb red"><span class="ml">Deadhead Miles</span><span class="mv" id="dh-miles-value" style="color:#3A2020">—</span><span class="mu">miles</span><span class="mt" id="dh-miles-time" style="display:none"></span><span class="ms" id="dh-route-label"></span></div>
+    </div>
+  </div>
+
+  <!-- FSC -->
+  <div class="card">
+    <div class="sh"><div class="sd" style="background:#F97316;box-shadow:0 0 8px rgba(249,115,22,0.5)"></div><h2 class="st">Fuel Surcharge (FSC)</h2></div>
+    <div class="row" style="align-items:flex-end">
+      <div class="field nf" style="min-width:200px"><label>FSC Rate Per Loaded Mile</label><span class="fp">$</span><input type="number" id="fsc-input" class="fsc" min="0" step="0.01" placeholder="0.00" style="padding-left:30px;padding-right:80px"><span class="fs" style="font-size:11px">/mile</span></div>
+      <div class="mb orange"><span class="ml">FSC Total</span><span class="mv" id="fsc-total" style="color:#3A3018">—</span><span class="ms" id="fsc-sub"></span></div>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="summary">
+    <div class="summary-h"><h2 class="summary-t">Summary</h2><div class="db" id="tdb" style="display:none"><svg class="ci" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#4A90D9" stroke-width="1.5"/><path d="M8 4v4.5l3 1.5" stroke="#4A90D9" stroke-width="1.5" stroke-linecap="round"/></svg><span id="tdt"></span></div></div>
+    <div class="sg2">
+      <div class="sc" style="border:1px solid rgba(16,185,129,0.13)"><div class="scl">Total Loaded</div><div class="scv" id="s-loaded" style="color:#10B981">—</div><div class="scu">miles</div></div>
+      <div class="sc" style="border:1px solid rgba(239,68,68,0.13)"><div class="scl">Total Deadhead</div><div class="scv" id="s-dh" style="color:#EF4444">—</div><div class="scu">miles</div></div>
+      <div class="sc" style="border:1px solid rgba(245,158,11,0.13)"><div class="scl">All Miles</div><div class="scv" id="s-all" style="color:#F59E0B">—</div><div class="scu">miles</div></div>
+      <div class="sc" style="border:1px solid rgba(139,92,246,0.13)"><div class="scl">Effective DH %</div><div class="scv" id="s-dhp" style="color:#8B5CF6">0.0%</div></div>
+    </div>
+    <div class="rt"><table>
+      <thead><tr><th style="text-align:left">Line Item</th><th style="text-align:right">Rate/Mi</th><th style="text-align:right">Loaded Mi</th><th style="text-align:right">Amount</th></tr></thead>
+      <tbody>
+        <tr><td class="in">Linehaul</td><td style="text-align:right;color:#4ADE80" id="r-lr">$3.26</td><td style="text-align:right;color:#A0B0C0" id="r-lm">—</td><td style="text-align:right;color:#4ADE80;font-weight:700" id="r-la">—</td></tr>
+        <tr id="r-fr"><td class="in">Fuel Surcharge</td><td style="text-align:right;color:#5A7088" id="r-fsr">—</td><td style="text-align:right;color:#A0B0C0" id="r-fsm">—</td><td style="text-align:right;color:#5A7088;font-weight:700" id="r-fsa">—</td></tr>
+      </tbody>
+      <tfoot><tr><td colspan="3" style="color:#F59E0B;font-size:14px;font-family:'DM Sans',sans-serif">TOTAL REVENUE</td><td style="text-align:right;color:#F59E0B;font-size:22px" id="r-tot">—</td></tr></tfoot>
+    </table></div>
+    <div class="ab" id="ab" style="display:none"><div><div class="abl">All-In Rate Per Loaded Mile</div><div class="abd" id="abd"></div></div><span class="abv" id="abv"></span></div>
+  </div>
+
+  <!-- RATE REFERENCE -->
+  <div class="card reft">
+    <div class="sh"><div class="sd" style="background:#8B5CF6;box-shadow:0 0 8px rgba(139,92,246,0.5)"></div><h2 class="st">Deadhead Rate Reference</h2></div>
+    <div style="overflow-x:auto"><table><thead><tr><th style="text-align:left">Deadhead %</th><th style="text-align:left">Diff Above 20%</th><th style="text-align:right">Breakeven Rate</th></tr></thead><tbody id="ref-tb"></tbody></table></div>
+    <div class="nb" id="ref-note"></div>
+  </div>
+
+  <div class="footer">NSG Logistics · Southlake, TX · <span id="yr"></span></div>
+</div>
+
 <script>
-"use strict";
+const DT=[{p:20,d:0,b:3.26},{p:50,d:30,b:4.24},{p:75,d:55,b:5.05},{p:100,d:80,b:5.87}];
+function iRate(dh){if(dh<=20)return 3.26;if(dh>=100)return 5.87;for(let i=0;i<DT.length-1;i++){const l=DT[i],h=DT[i+1];if(dh>=l.p&&dh<=h.p)return l.b+((dh-l.p)/(h.p-l.p))*(h.b-l.b)}return 3.26}
+const C=[["Abilene, TX",32.449,-99.733],["Akron, OH",41.081,-81.519],["Albuquerque, NM",35.084,-106.650],["Amarillo, TX",35.222,-101.831],["Atlanta, GA",33.749,-84.388],["Augusta, GA",33.474,-81.975],["Austin, TX",30.267,-97.743],["Bakersfield, CA",35.373,-119.019],["Baltimore, MD",39.290,-76.612],["Baton Rouge, LA",30.452,-91.187],["Beaumont, TX",30.080,-94.127],["Billings, MT",45.783,-108.501],["Birmingham, AL",33.521,-86.803],["Bismarck, ND",46.808,-100.784],["Boise, ID",43.615,-116.202],["Boston, MA",42.360,-71.059],["Brownsville, TX",25.902,-97.498],["Buffalo, NY",42.886,-78.878],["Carlsbad, NM",32.421,-104.229],["Cedar Rapids, IA",41.978,-91.666],["Charleston, SC",32.777,-79.931],["Charlotte, NC",35.227,-80.843],["Chattanooga, TN",35.046,-85.310],["Cheyenne, WY",41.140,-104.820],["Chicago, IL",41.878,-87.630],["Cincinnati, OH",39.103,-84.512],["Cleburne, TX",32.348,-97.387],["Cleveland, OH",41.499,-81.694],["Colorado Springs, CO",38.834,-104.821],["Columbus, OH",39.961,-82.999],["Corpus Christi, TX",27.801,-97.396],["Dallas, TX",32.777,-96.797],["Dayton, OH",39.759,-84.192],["Denver, CO",39.739,-104.990],["Des Moines, IA",41.587,-93.625],["Detroit, MI",42.331,-83.046],["Dodge City, KS",37.753,-100.017],["El Paso, TX",31.762,-106.485],["Enid, OK",36.396,-97.878],["Fargo, ND",46.877,-96.790],["Fayetteville, AR",36.063,-94.157],["Fort Smith, AR",35.386,-94.399],["Fort Worth, TX",32.756,-97.331],["Fresno, CA",36.738,-119.787],["Garden City, KS",37.972,-100.873],["Gothenburg, NE",40.930,-100.161],["Grand Island, NE",40.926,-98.342],["Grand Rapids, MI",42.963,-85.668],["Green Bay, WI",44.519,-88.020],["Greensboro, NC",36.073,-79.792],["Hobbs, NM",32.713,-103.136],["Houston, TX",29.760,-95.370],["Huntsville, AL",34.730,-86.586],["Hutchinson, KS",38.061,-97.930],["Indianapolis, IN",39.768,-86.158],["Jackson, MS",32.299,-90.185],["Jacksonville, FL",30.332,-81.656],["Joplin, MO",37.084,-94.513],["Kansas City, KS",39.114,-94.627],["Kansas City, MO",39.100,-94.579],["Knoxville, TN",35.961,-83.921],["Kress, TX",34.361,-101.747],["Lafayette, LA",30.224,-92.020],["Lake Charles, LA",30.213,-93.217],["Laredo, TX",27.504,-99.508],["Las Cruces, NM",32.320,-106.764],["Las Vegas, NV",36.170,-115.140],["Lawton, OK",34.604,-98.396],["Liberal, KS",37.044,-100.921],["Lincoln, NE",40.814,-96.703],["Little Rock, AR",34.747,-92.290],["Longview, TX",32.501,-94.741],["Los Angeles, CA",34.052,-118.244],["Louisville, KY",38.253,-85.759],["Lubbock, TX",33.578,-101.855],["Lufkin, TX",31.338,-94.729],["Macon, GA",32.841,-83.632],["McAllen, TX",26.203,-98.230],["Memphis, TN",35.150,-90.049],["Miami, FL",25.762,-80.192],["Midland, TX",31.997,-102.078],["Milwaukee, WI",43.039,-87.907],["Minneapolis, MN",44.978,-93.265],["Mobile, AL",30.695,-88.040],["Monroe, LA",32.509,-92.119],["Montgomery, AL",32.367,-86.300],["Nashville, TN",36.163,-86.782],["New Orleans, LA",29.951,-90.072],["New York, NY",40.713,-74.006],["Norfolk, VA",36.851,-76.286],["North Platte, NE",41.124,-100.765],["Odessa, TX",31.846,-102.368],["Oklahoma City, OK",35.468,-97.516],["Omaha, NE",41.257,-95.935],["Orlando, FL",28.538,-81.379],["Peoria, IL",40.694,-89.589],["Philadelphia, PA",39.953,-75.165],["Phoenix, AZ",33.448,-112.074],["Pittsburgh, PA",40.441,-79.996],["Portland, OR",45.515,-122.678],["Pueblo, CO",38.254,-104.609],["Raleigh, NC",35.780,-78.638],["Rapid City, SD",44.081,-103.231],["Richmond, VA",37.541,-77.436],["Roswell, NM",33.394,-104.523],["Sacramento, CA",38.582,-121.494],["Salina, KS",38.840,-97.611],["Salt Lake City, UT",40.761,-111.891],["San Angelo, TX",31.464,-100.437],["San Antonio, TX",29.424,-98.494],["San Diego, CA",32.716,-117.161],["San Francisco, CA",37.775,-122.419],["Santa Fe, NM",35.687,-105.938],["Savannah, GA",32.081,-81.091],["Seattle, WA",47.606,-122.332],["Shreveport, LA",32.525,-93.750],["Sioux City, IA",42.500,-96.400],["Sioux Falls, SD",43.546,-96.731],["Southlake, TX",32.941,-97.134],["Spokane, WA",47.659,-117.426],["Springfield, IL",39.781,-89.650],["Springfield, MO",37.209,-93.292],["St. Louis, MO",38.627,-90.199],["Tampa, FL",27.951,-82.457],["Texarkana, TX",33.425,-94.048],["Toledo, OH",41.654,-83.536],["Topeka, KS",39.047,-95.675],["Tucson, AZ",32.223,-110.975],["Tulsa, OK",36.154,-95.993],["Tyler, TX",32.351,-95.301],["Waco, TX",31.549,-97.147],["Washington, DC",38.907,-77.037],["Wichita, KS",37.687,-97.330],["Wichita Falls, TX",33.914,-98.493],["Ardmore, OK",34.174,-97.144],["Bentonville, AR",36.373,-94.209],["Big Spring, TX",32.250,-101.479],["Borger, TX",35.668,-101.397],["Bowling Green, KY",36.990,-86.444],["Casper, WY",42.867,-106.313],["Childress, TX",34.426,-100.204],["Clovis, NM",34.405,-103.205],["Colby, KS",39.396,-101.035],["Dalhart, TX",36.060,-102.513],["Dumas, TX",35.863,-101.973],["Durant, OK",33.994,-96.371],["Elk City, OK",35.412,-99.404],["Emporia, KS",38.404,-96.182],["Ennis, TX",32.329,-96.625],["Guymon, OK",36.689,-101.482],["Hays, KS",38.879,-99.327],["Hillsboro, TX",32.011,-97.130],["Junction City, KS",39.029,-96.831],["Levelland, TX",33.587,-102.378],["Manhattan, KS",39.184,-96.572],["Marshall, TX",32.545,-94.367],["McPherson, KS",38.371,-97.664],["Mineral Wells, TX",32.808,-98.113],["Newton, KS",38.047,-97.345],["Pampa, TX",35.536,-100.960],["Paris, TX",33.661,-95.556],["Perryton, TX",36.400,-100.803],["Plainview, TX",34.185,-101.707],["Ponca City, OK",36.707,-97.086],["Pratt, KS",37.644,-98.738],["San Marcos, TX",29.883,-97.941],["Snyder, TX",32.718,-100.917],["Stephenville, TX",32.221,-98.203],["Stillwater, OK",36.116,-97.058],["Sweetwater, TX",32.471,-100.406],["Temple, TX",31.098,-97.343],["Vernon, TX",34.154,-99.265],["Victoria, TX",28.805,-96.991],["Weatherford, TX",32.759,-97.797],["Wellington, KS",37.265,-97.372],["Winfield, KS",37.240,-96.996]];
+const cities=C.map(c=>({n:c[0],lat:c[1],lon:c[2],lc:c[0].toLowerCase()}));
+function calcMi(a,b,c,d){const R=3958.8,dL=((c-a)*Math.PI)/180,dN=((d-b)*Math.PI)/180,x=Math.sin(dL/2)**2+Math.cos(a*Math.PI/180)*Math.cos(c*Math.PI/180)*Math.sin(dN/2)**2;return Math.round(R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x))*1.20)}
+function eT(m){return Math.round((m/52)*60)}
+function fT(m){const h=Math.floor(m/60),mm=m%60;return h>0?h+'h '+mm+'m':mm+'m'}
+function fM(n){return n>0?'$'+n.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}):'—'}
+function clk(){return'<svg class="ci" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#4A90D9" stroke-width="1.5"/><path d="M8 4v4.5l3 1.5" stroke="#4A90D9" stroke-width="1.5" stroke-linecap="round"/></svg>'}
 
-/* =========================================================
-   ONE-FILE DATA: Load CSV from GitHub Pages for everyone
-   ========================================================= */
+let oC=null,dC=null,bOC=null,bDC=null;
 
-// 1) Put your daily CSV at: /data/TXDOT_latest.csv (in this repo)
-// 2) Overwrite it in GitHub each day
-// 3) Everyone refreshes and sees the update
-const CSV_URL = 'TXDOT_latest.csv';
-
-// Dynamic "today" for SLA color/overdue logic
-const NOW = new Date();
-const TODAY = new Date(NOW.getFullYear(), NOW.getMonth(), NOW.getDate());
-const toYMD = d => d.toISOString().slice(0,10);
-
-// CSV parsing helpers (robust to quoted commas and escaped quotes)
-function parseCsvLine(line){
-  const out=[]; let cur='', inQuotes=false;
-  for(let i=0;i<line.length;i++){
-    const ch=line[i];
-    if(ch==='"'){
-      if(inQuotes && line[i+1]==='"'){ cur+='"'; i++; }
-      else inQuotes=!inQuotes;
-    } else if(ch===',' && !inQuotes){
-      out.push(cur); cur='';
-    } else cur+=ch;
-  }
-  out.push(cur);
-  return out.map(s=>s.trim());
-}
-function parseCsvToRows(text){
-  const lines=text.split(/\r?\n/).filter(l=>l.trim().length);
-  if(!lines.length) return [];
-  const hdr=parseCsvLine(lines[0].replace(/^\uFEFF/,'')).map(h=>h.replace(/"/g,''));
-  const rows=[];
-  for(let i=1;i<lines.length;i++){
-    const l=lines[i]; if(!l) continue;
-    const vals=parseCsvLine(l);
-    const obj={}; hdr.forEach((h,j)=>obj[h]=(vals[j]||'').replace(/"/g,''));
-    const acct=obj['Account Name_2']||''; if(!acct) continue;
-
-    let rBy=''; const rb=obj['Required By']||'';
-    if(rb){ const m=rb.match(/(\d{1,2})\/(\d{1,2})\/(\d{4})/); if(m) rBy=`${m[3]}-${m[1].padStart(2,'0')}-${m[2].padStart(2,'0')}`; }
-    let sr=parseInt(obj['Shipments Remaining']||'0')||0;
-    if(!sr){
-      Object.keys(obj).forEach(k=>{
-        const v=(obj[k]||'').trim();
-        if(!k.trim() && /^\d+$/.test(v) && parseInt(v)>0) sr=parseInt(v);
-      });
-    }
-    let term=obj['Terminal Key']||'';
-    if(!term){
-      Object.keys(obj).forEach(k=>{
-        if(!k.trim() && (obj[k]||'').includes('TX')) term=(obj[k]||'').trim();
-      });
-    }
-    rows.push({
-      account: acct.trim(),
-      location: (obj['Location Name_3']||'').trim(),
-      orderNbr: (obj['Related Order Nbr']||'').trim(),
-      product: (obj['Product']||'').trim(),
-      orderedQty: parseInt(obj['Ordered Qty.']||'0')||0,
-      shipments: parseInt(obj['Shipments']||'0')||0,
-      shipmentsRemaining: sr,
-      requiredBy: rBy,
-      terminal: term.trim()
-    });
-  }
-  return rows;
-}
-async function fetchText(url){
-  const res=await fetch(url,{cache:'no-store'});
-  if(!res.ok) throw new Error(`${res.status} ${res.statusText}`);
-  return res.text();
-}
-
-/* =========================================================
-   Your existing embedded DATA stays as fallback.
-   (Used on first paint or if CSV is missing)
-   ========================================================= */
-const DATA=[{"account":"TxDOT Odessa District","location":"Crane","orderNbr":"WO0002099","product":"Road Salt ASTM Type I Bulk","orderedQty":8,"shipments":0,"shipmentsRemaining":8,"requiredBy":"2026-01-28","terminal":"KRESS, TX"},{"account":"TxDOT El Paso District","location":"West El Paso MO - El Paso, TX","orderNbr":"WO0003871","product":"Brine Salt Type II Bulk","orderedQty":4,"shipments":0,"shipmentsRemaining":4,"requiredBy":"2026-03-19","terminal":"KRESS, TX"},/* ... (unchanged embedded dataset, truncated here for brevity) ... */{"account":"TxDOT Fort Worth District","location":"Glen Rose MO - 503 NE Big Bend Trail, Glen Rose","orderNbr":"WO0003342","product":"Brine Solution","orderedQty":6,"shipments":5,"shipmentsRemaining":1,"requiredBy":"2026-02-13","terminal":"CLEBURNE, TX"}];
-
-const TRAILERS=['','Belt','Dry Bulk Pneumatic','End Dump','Flatbed','Hopper Bottom','Tanker','Van/Enclosed','Walking Floor'];
-const SORTS=[{k:'requiredBy_asc',l:'Required By (oldest)'},{k:'requiredBy_desc',l:'Required By (newest)'},{k:'account_asc',l:'Account A-Z'},{k:'account_desc',l:'Account Z-A'},{k:'shipmentsRemaining_desc',l:'Most Remaining'},{k:'shipmentsRemaining_asc',l:'Least Remaining'},{k:'product_asc',l:'Product A-Z'}];
-
-// State
-let state={
-  data:DATA.map((r,i)=>({...r,_id:i})),
-  tab:'board',
-  termF:'ALL',
-  sortKey:'requiredBy_asc',
-  filterProduct:'ALL',
-  filterAccount:'ALL',
-  inputs:JSON.parse(localStorage.getItem('nsg_inputs')||'{}'),
-  schedules:JSON.parse(localStorage.getItem('nsg_schedules')||'{}'),
-  completedLoads:JSON.parse(localStorage.getItem('nsg_completedLoads')||'[]'),
-  deliveredEntries:JSON.parse(localStorage.getItem('nsg_deliveredEntries')||'[]'),
-  // uploadHistory removed (no longer used)
-  calMonth:TODAY.getMonth(), calYear:TODAY.getFullYear(),
-  detailItem:null, schedulerItem:null, schedulerRows:[],
-  lastDataInfo:null // set after CSV load
-};
-function save(){
-  try{
-    localStorage.setItem('nsg_inputs',JSON.stringify(state.inputs));
-    localStorage.setItem('nsg_schedules',JSON.stringify(state.schedules));
-    localStorage.setItem('nsg_completedLoads',JSON.stringify(state.completedLoads));
-    localStorage.setItem('nsg_deliveredEntries',JSON.stringify(state.deliveredEntries));
-  }catch(e){}
-}
-function upd(id,f,v){if(!state.inputs[id])state.inputs[id]={};state.inputs[id][f]=v;save();render();}
-const pCol=d=>{ if(!d) return '#64748b'; const x=(new Date(d)-TODAY)/864e5; return x<-30?'#dc2626':x<-7?'#ca8a04':'#16a34a'; };
-const fD=d=>d?new Date(d+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):'—';
-const fDS=d=>d?new Date(d+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'}):'';
-const ovd=d=>d?Math.floor((TODAY-new Date(d))/864e5):null;
-const pC=p=>p.includes('Road Salt')?'#3b82f6':p.includes('Brine Salt')?'#8b5cf6':p.includes('Ice Slicer')?'#06b6d4':p.includes('Brine Solution')?'#10b981':'#f59e0b';
-const isEntryDelivered=(id,si,dt)=>state.deliveredEntries.some(e=>e.id===id&&e.schedIdx===(si!=null?si:-1)&&e.date===(dt||''));
-const esc=s=>(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-
-// ---- NEW: load CSV and replace state.data, preserving inputs/schedules
-async function initDataFromCsv(){
-  try{
-    const text = await fetchText(CSV_URL);
-    const rows = parseCsvToRows(text);
-    if(!rows.length) throw new Error('CSV parsed empty');
-    const newData = rows.map((r,i)=>({...r,_id:i}));
-
-    const newIn={}, newSc={};
-    newData.forEach(nr=>{
-      const old = state.data.find(o=>o.orderNbr===nr.orderNbr && o.account===nr.account && o.product===nr.product);
-      if(old){
-        if(state.inputs[old._id])   newIn[nr._id] = state.inputs[old._id];
-        if(state.schedules[old._id])newSc[nr._id] = state.schedules[old._id];
-      }
-    });
-
-    state.data = newData;
-    state.inputs = newIn;
-    state.schedules = newSc;
-    state.lastDataInfo = { fileName: 'TXDOT_latest.csv', sourcePath: CSV_URL, pickedBy: 'fixed-file' };
-    save();
-    render(); // re-render with latest CSV
-  }catch(err){
-    console.warn('CSV load failed, using embedded DATA. Error:', err);
-    state.lastDataInfo = { fileName: '(embedded)', sourcePath: '', pickedBy: 'fallback' };
-  }
-}
-
-function getFiltered(){
-  let d=state.data.filter(r=>r.shipmentsRemaining>0);
-  if(state.termF!=='ALL') d=d.filter(r=>r.terminal===state.termF);
-  if(state.filterProduct!=='ALL') d=d.filter(r=>r.product===state.filterProduct);
-  if(state.filterAccount!=='ALL') d=d.filter(r=>r.account===state.filterAccount);
-  const [field,dir]=state.sortKey.split('_');
-  d.sort((a,b)=>{
-    let va=a[field], vb=b[field];
-    if(typeof va==='number') return dir==='asc'?va-vb:vb-va;
-    va=va||''; vb=vb||'';
-    return dir==='asc'?va.localeCompare(vb):vb.localeCompare(va);
+function sAC(iid,sid,cb){
+  const inp=document.getElementById(iid),box=document.getElementById(sid);
+  let si=-1,m=[];
+  inp.addEventListener('input',function(){
+    const q=this.value.toLowerCase().trim();si=-1;
+    if(q.length<2){box.style.display='none';m=[];return}
+    m=cities.filter(c=>c.lc.includes(q)).slice(0,8);
+    if(!m.length){box.style.display='none';return}
+    box.innerHTML=m.map((c,i)=>'<div class="sg" data-i="'+i+'"><strong>'+c.n+'</strong></div>').join('');
+    box.style.display='block';
+    box.querySelectorAll('.sg').forEach(el=>{el.addEventListener('mousedown',function(e){e.preventDefault();const i=+this.dataset.i;inp.value=m[i].n;box.style.display='none';cb(m[i])})});
   });
-  return d;
+  inp.addEventListener('keydown',function(e){if(!m.length)return;if(e.key==='ArrowDown'){e.preventDefault();si=Math.min(si+1,m.length-1);hS(box,si)}else if(e.key==='ArrowUp'){e.preventDefault();si=Math.max(si-1,0);hS(box,si)}else if(e.key==='Enter'&&si>=0){e.preventDefault();inp.value=m[si].n;box.style.display='none';cb(m[si])}});
+  inp.addEventListener('blur',()=>setTimeout(()=>box.style.display='none',200));
 }
-function getStats(){
-  const all=state.termF==='ALL'?state.data:state.data.filter(r=>r.terminal===state.termF);
-  const tOrd=all.reduce((s,r)=>s+r.orderedQty,0), tShip=all.reduce((s,r)=>s+r.shipments,0), tRem=all.reduce((s,r)=>s+r.shipmentsRemaining,0);
-  const byP={}; all.forEach(r=>{ if(!byP[r.product]) byP[r.product]={shipped:0,remaining:0,ordered:0}; byP[r.product].shipped+=r.shipments; byP[r.product].remaining+=r.shipmentsRemaining; byP[r.product].ordered+=r.orderedQty;});
-  return {tOrd,tShip,tRem,byP};
-}
-function getCalItems(){
-  const map={};
-  state.data.forEach(r=>{
-    const sched=state.schedules[r._id];
-    if(sched&&sched.length>0){
-      sched.forEach((s,si)=>{
-        if(s.date&&s.loads>0){
-          if(!map[s.date]) map[s.date]=[];
-          map[s.date].push({...r,_sL:s.loads,_sC:s.carrier||'',_sT:s.trailerType||'',_si:si});
-        }
-      });
-    } else {
-      const est=state.inputs[r._id]?.estDelivery;
-      if(est){
-        if(!map[est]) map[est]=[];
-        map[est].push({...r,_sL:r.shipmentsRemaining,_sC:state.inputs[r._id]?.carrier||'',_sT:state.inputs[r._id]?.trailerType||'',_si:-1});
-      }
-    }
-  });
-  return map;
-}
-function optionsHtml(opts,sel){return opts.map(o=>`<option value="${esc(o)}"${o===sel?' selected':''}>${esc(o||'Select...')}</option>`).join('');}
-function markDelivered(r,dt){
-  if(isEntryDelivered(r._id,r._si,dt)) return;
-  state.deliveredEntries.push({id:r._id,schedIdx:r._si!=null?r._si:-1,date:dt||''});
-  const ui=state.inputs[r._id]||{};
-  state.completedLoads.unshift({
-    ...r,
-    completedDate:new Date().toISOString().slice(0,10),
-    completedTime:new Date().toLocaleTimeString(),
-    carrier:r._sC||ui.carrier||'',
-    trailerType:r._sT||ui.trailerType||'',
-    estDelivery:dt||ui.estDelivery||'',
-    deliveredLoads:r._sL||r.shipmentsRemaining,
-    _entrySchedIdx:r._si!=null?r._si:-1,
-    _entryDate:dt||''
-  });
-  save(); render();
-}
-function undoCompleted(idx){
-  const item=state.completedLoads[idx]; if(!item) return;
-  state.completedLoads.splice(idx,1);
-  state.deliveredEntries=state.deliveredEntries.filter(e=>!(e.id===item._id && e.schedIdx===(item._entrySchedIdx!=null?item._entrySchedIdx:-1) && e.date===(item._entryDate||'')));
-  save(); render();
-}
-function exportCSV(){
-  let csv='Status,Account,Location,Order Nbr,Product,Ordered,Shipped,Remaining,Required By,Terminal,Est Delivery,Loads,Carrier,Trailer,Completed\n';
-  state.data.forEach(r=>{const ui=state.inputs[r._id]||{}; csv+=`Active,${esc(r.account)},"${esc(r.location)}",${esc(r.orderNbr)},"${esc(r.product)}",${r.orderedQty},${r.shipments},${r.shipmentsRemaining},${r.requiredBy},${esc(r.terminal)},${ui.estDelivery||''},${ui.estLoads||''},${ui.carrier||''},${ui.trailerType||''},\n`;});
-  state.completedLoads.forEach(r=>{ csv+=`Completed,${esc(r.account)},"${esc(r.location)}",${esc(r.orderNbr)},"${esc(r.product)}",${r.orderedQty},${r.shipments},${r.shipmentsRemaining},${r.requiredBy},${esc(r.terminal)},${r.estDelivery||''},,${r.carrier||''},${r.trailerType||''},${r.completedDate||''}\n`;});
-  const blob=new Blob([csv],{type:'text/csv'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='NSG_TxDOT_'+new Date().toISOString().slice(0,10)+'.csv'; a.click();
+function hS(b,i){b.querySelectorAll('.sg').forEach((e,j)=>e.classList.toggle('active',j===i))}
+
+function upd(){
+  let pM=0,pT=0;if(oC&&dC){pM=calcMi(oC.lat,oC.lon,dC.lat,dC.lon);pT=eT(pM)}
+  document.getElementById('primary-miles').textContent=pM>0?pM.toLocaleString():'—';
+  document.getElementById('primary-miles').style.color=pM>0?'#F59E0B':'#3A4F65';
+  const pt=document.getElementById('primary-time');if(pT>0){pt.style.display='flex';pt.innerHTML=clk()+fT(pT)}else pt.style.display='none';
+
+  let dhM=0,dhT=0;if(dC&&bOC){dhM=calcMi(dC.lat,dC.lon,bOC.lat,bOC.lon);dhT=eT(dhM)}
+  document.getElementById('dh-miles-value').textContent=dhM>0?dhM.toLocaleString():'—';
+  document.getElementById('dh-miles-value').style.color=dhM>0?'#EF4444':'#3A2020';
+  const dt=document.getElementById('dh-miles-time');if(dhT>0){dt.style.display='flex';dt.innerHTML=clk()+fT(dhT)}else dt.style.display='none';
+  document.getElementById('dh-route-label').textContent=(dC?dC.n.split(',')[0]:'Dest')+' → '+(bOC?bOC.n.split(',')[0]:'BH Orig');
+
+  let bM=0,bT=0;if(bOC&&bDC){bM=calcMi(bOC.lat,bOC.lon,bDC.lat,bDC.lon);bT=eT(bM)}
+  document.getElementById('bh-loaded-miles').textContent=bM>0?bM.toLocaleString():'—';
+  document.getElementById('bh-loaded-miles').style.color=bM>0?'#F59E0B':'#3A4F65';
+  const bt=document.getElementById('bh-loaded-time');if(bT>0){bt.style.display='flex';bt.innerHTML=clk()+fT(bT)}else bt.style.display='none';
+
+  const tL=pM+bM,tD=dhM,tA=tL+tD,tDM=pT+dhT+bT,eDH=tL>0?(tD/tL)*100:0;
+  const dv=document.getElementById('dh-input').value,dhP=dv!==''?(parseFloat(dv)||0):eDH;
+  const da=document.getElementById('dh-auto');if(eDH>0&&dv===''){da.style.display='block';da.textContent='Auto-calculated: '+eDH.toFixed(1)+'%'}else da.style.display='none';
+
+  const rate=iRate(dhP),fpm=parseFloat(document.getElementById('fsc-input').value)||0;
+  const lh=tL>0?rate*tL:0,fsc=tL>0?fpm*tL:0,tot=lh+fsc,ai=rate+fpm;
+
+  document.getElementById('fsc-total').textContent=fsc>0?fM(fsc):'—';
+  document.getElementById('fsc-total').style.color=fsc>0?'#F97316':'#3A3018';
+  document.getElementById('fsc-sub').textContent=tL>0?'× '+tL.toLocaleString()+' loaded mi':'';
+
+  document.getElementById('s-loaded').textContent=tL>0?tL.toLocaleString():'—';
+  document.getElementById('s-dh').textContent=tD>0?tD.toLocaleString():'—';
+  document.getElementById('s-all').textContent=tA>0?tA.toLocaleString():'—';
+  document.getElementById('s-dhp').textContent=eDH.toFixed(1)+'%';
+
+  const tdb=document.getElementById('tdb');if(tDM>0){tdb.style.display='flex';document.getElementById('tdt').textContent=fT(tDM)+' total drive'}else tdb.style.display='none';
+
+  document.getElementById('r-lr').textContent='$'+rate.toFixed(2);
+  document.getElementById('r-lm').textContent=tL>0?tL.toLocaleString():'—';
+  document.getElementById('r-la').textContent=lh>0?fM(lh):'—';
+  document.getElementById('r-fsr').textContent=fpm>0?'$'+fpm.toFixed(2):'—';document.getElementById('r-fsr').style.color=fpm>0?'#F97316':'#5A7088';
+  document.getElementById('r-fsm').textContent=tL>0?tL.toLocaleString():'—';
+  document.getElementById('r-fsa').textContent=fsc>0?fM(fsc):'—';document.getElementById('r-fsa').style.color=fsc>0?'#F97316':'#5A7088';
+  document.getElementById('r-fr').style.background=fsc>0?'rgba(249,115,22,0.04)':'transparent';
+  document.getElementById('r-tot').textContent=tot>0?fM(tot):'—';
+
+  const ab=document.getElementById('ab');if(tL>0){ab.style.display='flex';document.getElementById('abd').textContent='Linehaul $'+rate.toFixed(2)+' + FSC $'+fpm.toFixed(2);document.getElementById('abv').innerHTML='$'+ai.toFixed(2)+'<small>/mi</small>'}else ab.style.display='none';
+
+  // Ref table
+  document.getElementById('ref-tb').innerHTML=DT.map((r,i)=>{const pp=i===0?0:DT[i-1].p;const a=(i===0&&dhP<=20)||(dhP>pp&&dhP<=r.p);return'<tr class="'+(a?'act':'')+'"><td style="color:'+(a?'#F59E0B':'#A0B0C0')+'">'+r.p+'%</td><td style="color:'+(a?'#F59E0B':'#8090A0')+'">'+r.d.toFixed(1)+'%</td><td style="text-align:right;color:'+(a?'#4ADE80':'#A0B0C0')+'">$'+r.b.toFixed(2)+'</td></tr>'}).join('');
+  document.getElementById('ref-note').innerHTML='At <span class="hl am">'+dhP.toFixed(1)+'%</span> deadhead → breakeven <span class="hl gn">$'+rate.toFixed(2)+'/mi</span>. Distances use ×1.20 road-adjusted haversine.';
 }
 
-// ===== RENDER =====
-function render(){
-  const s=state, d=getFiltered(), st=getStats(), pct=st.tOrd>0?Math.round(st.tShip/st.tOrd*100):0;
-  const terms=[...new Set(s.data.map(r=>r.terminal))].sort();
-  const prods=[...new Set(s.data.map(r=>r.product))].sort();
-  const accts=[...new Set(s.data.map(r=>r.account))].sort();
-
-  let h=`<div class="hdr"><div class="logo"><div class="logo-icon">N</div><div><div style="font-size:20px;font-weight:700;color:#f8fafc">NSG - TxDOT</div><div style="font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:.08em">Load Scheduling &amp; Dispatch Board</div></div></div>`;
-
-  h+=`<div class="tabs">`;
-  ['board','calendar','completed','products','dashboard'].forEach(t=>{
-    const labels={board:'Priority Board',calendar:'Calendar',completed:'Completed',products:'By Product',dashboard:'Dashboard'};
-    h+=`<button class="tab${s.tab===t?' active':''}" onclick="state.tab='${t}';render()">${labels[t]}</button>`;
-  });
-  h+=`</div><button class="btn btn-green" onclick="exportCSV()" style="display:flex;align-items:center;gap:5px">📥 Export</button></div>`;
-
-  // NEW: show which data file is loaded
-  if (s.lastDataInfo){
-    h+=`<div style="padding:6px 20px;background:#0f1629;border-bottom:1px solid #1e293b;font-size:11px;color:#94a3b8">
-           Data source: <b style="color:#f8fafc">${esc(s.lastDataInfo.fileName)}</b>
-           <span style="margin-left:8px;color:#64748b">(${esc(s.lastDataInfo.pickedBy)})</span>
-        </div>`;
-  }
-
-  // Filter bar
-  h+=`<div class="filter-bar"><span style="font-size:11px;color:#64748b;font-weight:600">TERMINAL:</span><select onchange="state.termF=this.value;render()"><option value="ALL">All</option>${terms.map(t=>`<option value="${esc(t)}"${s.termF===t?' selected':''}>${esc(t)}</option>`).join('')}</select><div style="flex:1"></div><span style="font-size:12px;color:#94a3b8"><b style="color:#f8fafc">${d.length}</b> items | <b style="color:#f8fafc">${st.tRem}</b> remaining</span></div>`;
-
-  // Stats
-  h+=`<div class="stats">`;
-  [[st.tOrd,'Total Ordered','#c2410c'],[st.tShip,'Total Shipped','#22c55e'],[st.tRem,'Remaining','#ca8a04'],[s.completedLoads.length,'Delivered','#22c55e'],[pct+'%','Completion','#3b82f6']].forEach(([v,l,c],i)=>{
-    h+=`<div class="stat" style="border-left:3px solid ${c}"><div class="stat-val" style="${i===2?'color:#ca8a04':''}">${v}</div><div class="stat-label">${l}</div>${i===4?`<div style="margin-top:4px;height:4px;border-radius:2px;background:#1e293b"><div style="height:4px;border-radius:2px;background:#3b82f6;width:${pct}%"></div></div>`:''}</div>`;
-  });
-  h+=`</div><div class="main">`;
-
-  // ===== PRIORITY BOARD =====
-  if(s.tab==='board'){
-    h+=`<div style="display:flex;gap:8px;margin-bottom:8px;align-items:center;flex-wrap:wrap">`;
-    h+=`<span style="font-size:11px;color:#64748b;font-weight:600">SORT:</span><select onchange="state.sortKey=this.value;render()" style="width:190px">${SORTS.map(o=>`<option value="${o.k}"${s.sortKey===o.k?' selected':''}>${o.l}</option>`).join('')}</select>`;
-    h+=`<span style="font-size:11px;color:#64748b;font-weight:600;margin-left:8px">PRODUCT:</span><select onchange="state.filterProduct=this.value;render()" style="width:170px"><option value="ALL">All</option>${prods.map(p=>`<option value="${esc(p)}"${s.filterProduct===p?' selected':''}>${esc(p)}</option>`).join('')}</select>`;
-    h+=`<span style="font-size:11px;color:#64748b;font-weight:600;margin-left:8px">ACCOUNT:</span><select onchange="state.filterAccount=this.value;render()" style="width:170px"><option value="ALL">All</option>${accts.map(a=>`<option value="${esc(a)}"${s.filterAccount===a?' selected':''}>${esc(a)}</option>`).join('')}</select>`;
-    h+=`<button class="btn" onclick="state.sortKey='requiredBy_asc';state.filterProduct='ALL';state.filterAccount='ALL';render()">Reset</button></div>`;
-    // Header
-    h+=`<div class="row row-hdr cols">
-      <span style="color:#c2410c">Priority</span><span>Customer</span><span>Delivery Location</span><span>Work Order</span><span>Product Type</span><span style="text-align:center">Ord</span><span style="text-align:center;color:#22c55e">Ship</span><span style="text-align:center;color:#ca8a04">Rem</span><span>Req By</span><span>Est. Delivery</span><span style="text-align:center">Loads</span><span>Carrier</span><span>Trailer Type</span><span style="text-align:center;color:#3b82f6">Schedule</span></div>`;
-    d.forEach((r,idx)=>{
-      const ui=s.inputs[r._id]||{}, od=ovd(r.requiredBy), sc=s.schedules[r._id], hasSc=sc&&sc.length>0;
-      const scCnt=hasSc?sc.length:0, scL=hasSc?sc.reduce((a,x)=>a+(x.loads||0),0):0;
-      h+=`<div class="row cols" style="${hasSc?'background:#111d2e;border-color:#1e3a5f':''}">
-        <span class="badge" style="background:${pCol(r.requiredBy)}22;color:${pCol(r.requiredBy)}">${idx+1}</span>
-        <span style="color:#f8fafc;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${esc(r.account)}">${esc(r.account.replace('TxDOT ',''))}</span>
-        <span style="color:#94a3b8;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:10px" title="${esc(r.location)}">${esc(r.location)}</span>
-        <span style="color:#60a5fa;font-weight:600;font-size:11px">${esc(r.orderNbr)}</span>
-        <span class="tag" style="background:${pC(r.product)}18;color:${pC(r.product)}">${esc(r.product.length>26?r.product.slice(0,26)+'…':r.product)}</span>
-        <span style="font-weight:600;color:#f8fafc;text-align:center">${r.orderedQty}</span>
-        <span style="color:#22c55e;text-align:center">${r.shipments}</span>
-        <span style="color:#ca8a04;font-weight:700;text-align:center">${r.shipmentsRemaining}</span>
-        <div><span style="font-size:10px;color:${pCol(r.requiredBy)};font-weight:600">${fDS(r.requiredBy)}</span>${od>0?`<div style="font-size:9px;color:#dc2626">${od}d</div>`:''}</div>
-        <input type="date" value="${ui.estDelivery||''}" onchange="upd(${r._id},'estDelivery',this.value)" style="width:92px">
-        <input type="number" min="0" placeholder="0" value="${ui.estLoads||''}" onchange="upd(${r._id},'estLoads',this.value)" style="width:44px">
-        <input type="text" placeholder="Carrier" value="${esc(ui.carrier||'')}" onchange="upd(${r._id},'carrier',this.value)" style="width:95px">
-        <select onchange="upd(${r._id},'trailerType',this.value)" style="width:88px">${optionsHtml(TRAILERS,ui.trailerType||'')}</select>
-        <button class="btn" style="font-size:9px;padding:3px 5px;${hasSc?'border-color:#16a34a80;color:#22c55e;background:#16a34a15':'border-color:#3b82f680;color:#3b82f6'}" onclick="openScheduler(${r._id})">📅 ${hasSc?scCnt+'d/'+scL+'L':'Split'}</button>
-      </div>`;
-    });
-  }
-
-  // ===== CALENDAR =====
-  else if(s.tab==='calendar'){
-    const ci=getCalItems();
-    const dt=new Date(s.calYear,s.calMonth,1);
-    const dim=new Date(s.calYear,s.calMonth+1,0).getDate();
-    const sd=dt.getDay();
-    const mn=dt.toLocaleDateString('en-US',{month:'long',year:'numeric'});
-    h+=`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-      <div style="display:flex;gap:6px;align-items:center">
-        <button class="btn" onclick="state.calMonth=Math.max(0,state.calMonth-1);render()">◀</button>
-        <span style="font-size:16px;font-weight:700;color:#f8fafc;min-width:180px;text-align:center">${mn}</span>
-        <button class="btn" onclick="state.calMonth=Math.min(11,state.calMonth+1);render()">▶</button>
-      </div>
-      <span style="font-size:12px;color:#94a3b8">Click a load for details &amp; delivery. Drag to reschedule.</span>
-    </div>`;
-    h+=`<table class="cal"><thead><tr>${['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(d=>`<th style="padding:6px 4px;background:#0f1629;color:#64748b;font-size:11px;font-weight:600;text-align:center;border-bottom:1px solid #1e293b">${d}</th>`).join('')}</tr></thead><tbody><tr>`;
-    let cells=0;
-    for(let i=0;i<sd;i++){h+=`<td class="cal-cell" style="background:#0a0e17"></td>`;cells++;}
-    const today=toYMD(TODAY);
-    for(let day=1;day<=dim;day++){
-      if(cells>0&&cells%7===0) h+=`</tr><tr>`;
-      const ds=`${s.calYear}-${String(s.calMonth+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
-      const isT=ds===today;
-      const isWe=new Date(ds+'T00:00:00').getDay()===0||new Date(ds+'T00:00:00').getDay()===6;
-      const items=ci[ds]||[];
-      const tl=items.reduce((a,r)=>a+(r._sL||r.shipmentsRemaining),0);
-      h+=`<td class="cal-cell${isT?' cal-today':''}" style="background:${isWe?'#0d111a':'#111827'}" ondragover="event.preventDefault();this.classList.add('drag-over')" ondragleave="this.classList.remove('drag-over')" ondrop="event.preventDefault();this.classList.remove('drag-over');calDrop('${ds}')">`;
-      h+=`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;padding-bottom:3px;border-bottom:1px solid #1e293b30"><span style="font-size:13px;font-weight:${isT?800:600};color:${isT?'#c2410c':'#f8fafc'}">${day}</span>${items.length?`<span style="font-size:9px;font-weight:700;color:#ca8a04;background:#ca8a0418;padding:1px 5px;border-radius:3px">${tl} loads</span>`:''}</div>`;
-      items.forEach((r,idx)=>{
-        const del=isEntryDelivered(r._id,r._si,ds);
-        const c=del?'#6b7280':pC(r.product);
-        h+=`<div class="cal-tag${del?' delivered':''}" draggable="${!del}" ondragstart="calDragStart(${r._id},${r._si!=null?r._si:-1})" onclick="showDetail(${r._id},${r._si!=null?r._si:-1},'${ds}')" style="background:${del?'#37415118':c+'15'};color:${c};border-left:3px solid ${del?'#4b556380':c};opacity:${del?.65:1}">
-          <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-weight:700;font-size:11px">${del?'✓ ':''}${esc(r.orderNbr)}</span><span style="font-weight:800;font-size:13px;color:${del?'#6b7280':'#ca8a04'};background:${del?'#37415130':'#ca8a0420'};padding:0 4px;border-radius:3px">${r._sL||r.shipmentsRemaining}</span></div>
-          <div style="font-size:10px;color:${del?'#4b5563':'#94a3b8'};margin-top:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(r.account.replace('TxDOT ',''))}</div>
-          ${del?`<div style="font-size:9px;color:#6b7280;margin-top:1px;font-weight:600">✓ DELIVERED</div>`:`<div style="font-size:9px;color:${c}99;margin-top:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(r.product.length>30?r.product.slice(0,30)+'…':r.product)}</div>`}
-          ${!del&&r._sC?`<div style="font-size:9px;color:#22c55e;margin-top:1px">🚛 ${esc(r._sC)}</div>`:''}
-        </div>`;
-      });
-      h+=`</td>`; cells++;
-    }
-    while(cells%7!==0){h+=`<td class="cal-cell" style="background:#0a0e17"></td>`;cells++;}
-    h+=`</tr></tbody></table>`;
-  }
-
-  // ===== COMPLETED =====
-  else if(s.tab==='completed'){
-    h+=`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><div style="font-size:14px;font-weight:700;color:#f8fafc">Completed Loads (${s.completedLoads.length})</div></div>`;
-    if(!s.completedLoads.length){
-      h+=`<div style="text-align:center;padding:50px;background:#111827;border-radius:10px;border:1px solid #1e293b"><div style="font-size:40px;margin-bottom:10px">✓</div><div style="font-size:16px;font-weight:700;color:#f8fafc;margin-bottom:8px">No Completed Loads Yet</div><div style="font-size:13px;color:#94a3b8">Click a load on the Calendar, then "✓ Mark as Delivered"</div></div>`;
-    } else {
-      h+=`<div class="row row-hdr" style="grid-template-columns:90px 130px 160px 110px 1fr 50px 80px 90px 100px 60px">Completed,Customer,Location,Work Order,Product,Qty,Required By,Carrier,Trailer,Action</div>`.replace(/,/g,'</span><span>').replace('Completed','<span>Completed');
-      s.completedLoads.forEach((r,idx)=>{
-        h+=`<div class="row" style="grid-template-columns:90px 130px 160px 110px 1fr 50px 80px 90px 100px 60px;background:#22c55e08;border-color:#22c55e20">
-          <div><div style="font-size:11px;font-weight:600;color:#22c55e">${r.completedDate||''}</div><div style="font-size:9px;color:#94a3b8">${r.completedTime||''}</div></div>
-          <span style="color:#f8fafc;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(r.account.replace('TxDOT ',''))}</span>
-          <span style="color:#94a3b8;font-size:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(r.location)}</span>
-          <span style="color:#60a5fa;font-weight:600">${esc(r.orderNbr)}</span>
-          <span class="tag" style="background:${pC(r.product)}18;color:${pC(r.product)}">${esc(r.product.length>25?r.product.slice(0,25)+'…':r.product)}</span>
-          <span style="font-weight:700;color:#f8fafc;text-align:center">${r.deliveredLoads||r.shipmentsRemaining}</span>
-          <span style="font-size:10px;color:${pCol(r.requiredBy)}">${fDS(r.requiredBy)}</span>
-          <span style="color:#94a3b8;font-size:10px">${esc(r.carrier||'—')}</span>
-          <span style="color:#94a3b8;font-size:9px">${esc(r.trailerType||'—')}</span>
-          <button class="btn" style="font-size:9px;padding:2px 6px;color:#ca8a04;border-color:#ca8a0460" onclick="undoCompleted(${idx})">↩ Undo</button>
-        </div>`;
-      });
-    }
-  }
-
-  // ===== BY PRODUCT =====
-  else if(s.tab==='products'){
-    h+=`<table style="width:100%;border-collapse:collapse;font-size:13px;margin-top:12px"><thead><tr style="background:#0f1629">`;
-    ['Product Type','Total Ordered','Total Shipped','Remaining','% Complete'].forEach((c,i)=>{h+=`<th style="text-align:${i?'right':'left'};padding:8px 12px;border-bottom:1px solid #1e293b;color:#64748b;font-size:11px;text-transform:uppercase">${c}</th>`;});
-    h+=`</tr></thead><tbody>`;
-    Object.entries(st.byP).sort((a,b)=>b[1].remaining-a[1].remaining).forEach(([p,v])=>{
-      const pc=v.ordered>0?Math.round(v.shipped/v.ordered*100):0;
-      h+=`<tr><td style="padding:8px 12px;border-bottom:1px solid #1e293b08"><span class="tag" style="background:${pC(p)}18;color:${pC(p)}">${esc(p)}</span></td><td style="text-align:right;padding:8px 12px;font-weight:600;border-bottom:1px solid #1e293b08">${v.ordered}</td><td style="text-align:right;padding:8px 12px;color:#22c55e;border-bottom:1px solid #1e293b08">${v.shipped}</td><td style="text-align:right;padding:8px 12px;color:#ca8a04;font-weight:600;border-bottom:1px solid #1e293b08">${v.remaining}</td><td style="text-align:right;padding:8px 12px;border-bottom:1px solid #1e293b08"><span style="font-weight:600">${pc}%</span></td></tr>`;
-    });
-    h+=`<tr style="background:#0f1629;font-weight:700"><td style="padding:8px 12px">TOTALS</td><td style="text-align:right;padding:8px 12px">${st.tOrd}</td><td style="text-align:right;padding:8px 12px;color:#22c55e">${st.tShip}</td><td style="text-align:right;padding:8px 12px;color:#ca8a04">${st.tRem}</td><td style="text-align:right;padding:8px 12px">${pct}%</td></tr></tbody></table>`;
-  }
-
-  // ===== DASHBOARD =====
-  else if(s.tab==='dashboard'){
-    const grp={}; state.data.filter(r=>r.shipmentsRemaining>0).forEach(r=>{ if(!grp[r.account]) grp[r.account]=0; grp[r.account]+=r.shipmentsRemaining; });
-    const maxR=Math.max(...Object.values(grp),1);
-    h+=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px">`;
-    h+=`<div style="background:#111827;border:1px solid #1e293b;border-radius:10px;padding:18px"><div style="font-size:14px;font-weight:700;color:#f8fafc;margin-bottom:12px">Remaining by Customer</div>`;
-    Object.entries(grp).sort((a,b)=>b[1]-a[1]).forEach(([a,rem])=>{
-      h+=`<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><div style="width:130px;font-size:11px;color:#94a3b8;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(a.replace('TxDOT ',''))}</div><div style="flex:1;height:14px;background:#1e293b;border-radius:3px;overflow:hidden"><div style="height:14px;border-radius:3px;background:linear-gradient(90deg,#c2410c,#ea580c);width:${rem/maxR*100}%"></div></div><div style="width:30px;font-size:12px;font-weight:600;color:#f8fafc;text-align:right">${rem}</div></div>`;
-    });
-    h+=`</div>`;
-    h+=`<div style="background:#111827;border:1px solid #1e293b;border-radius:10px;padding:18px"><div style="font-size:14px;font-weight:700;color:#f8fafc;margin-bottom:12px">Terminal Breakdown</div>`;
-    const terms=[...new Set(state.data.map(r=>r.terminal))].sort();
-    terms.forEach(t=>{
-      const td=state.data.filter(r=>r.terminal===t);
-      h+=`<div style="background:#0a0e17;border-radius:8px;padding:14px;margin-bottom:10px;border:1px solid #1e293b"><div style="font-size:14px;font-weight:700;color:#f8fafc;margin-bottom:8px">${esc(t)}</div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">${[['Ordered',td.reduce((s,r)=>s+r.orderedQty,0),'#f8fafc'],['Shipped',td.reduce((s,r)=>s+r.shipments,0),'#22c55e'],['Remaining',td.reduce((s,r)=>s+r.shipmentsRemaining,0),'#ca8a04']].map(([l,v,c])=>`<div><div style="font-size:20px;font-weight:700;color:${c}">${v}</div><div style="font-size:10px;color:#64748b">${l}</div></div>`).join('')}</div></div>`;
-    });
-    h+=`</div></div>`;
-  }
-
-  h+=`</div>`; // close main
-  document.getElementById('app').innerHTML=h;
-}
-
-// Calendar drag/drop
-let dragData=null;
-window.calDragStart=function(id,si){dragData={id,si};};
-window.calDrop=function(ds){
-  if(!dragData) return;
-  const {id,si}=dragData;
-  if(si>=0){ const arr=[...(state.schedules[id]||[])]; if(arr[si]) arr[si]={...arr[si],date:ds}; state.schedules[id]=arr; }
-  else upd(id,'estDelivery',ds);
-  dragData=null; save(); render();
-};
-// Detail popup
-window.showDetail=function(id,si,ds){
-  const r=state.data.find(x=>x._id===id); if(!r) return;
-  const ui=state.inputs[id]||{}; const del=isEntryDelivered(id,si,ds); const od=ovd(r.requiredBy);
-  const sched=state.schedules[id]; const schedEntry=sched&&si>=0?sched[si]:null;
-  const loadQty=schedEntry?schedEntry.loads:r.shipmentsRemaining;
-  const carrier=schedEntry?.carrier||ui.carrier||''; const trailer=schedEntry?.trailerType||ui.trailerType||'';
-  let m=`<div class="overlay" onclick="closeDetail()"><div class="modal" onclick="event.stopPropagation()">`;
-  m+=`<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px"><div><div style="font-size:18px;font-weight:700;color:#f8fafc">${esc(r.orderNbr)}</div><span class="tag" style="background:${pC(r.product)}18;color:${pC(r.product)};font-size:12px;margin-top:4px">${esc(r.product)}</span></div><button onclick="closeDetail()" style="background:none;border:none;color:#94a3b8;font-size:22px;cursor:pointer">✕</button></div>`;
-  if(od>0) m+=`<div style="background:#dc262615;border:1px solid #dc262640;border-radius:6px;padding:8px 12px;margin-bottom:14px;display:flex;align-items:center;gap:8px"><span style="font-size:20px">⚠️</span><span style="color:#dc2626;font-weight:600;font-size:13px">${od} days overdue</span></div>`;
-  m+=`<div style="background:#0a0e17;border-radius:8px;padding:4px 14px;margin-bottom:12px">`;
-  [['Customer',r.account],['Delivery Location',r.location],['Terminal',r.terminal]].forEach(([l,v])=>{ m+=`<div class="detail-row"><span class="detail-label">${l}</span><span class="detail-value">${esc(v)}</span></div>`;});
-  m+=`</div><div style="background:#0a0e17;border-radius:8px;padding:4px 14px;margin-bottom:12px">`;
-  [['Required By',fD(r.requiredBy),pCol(r.requiredBy)],['Loads This Entry',loadQty,'#ca8a04'],['Total Ordered',r.orderedQty],['Shipments Completed',r.shipments,'#22c55e'],['Total Remaining',r.shipmentsRemaining,'#ca8a04']].forEach(([l,v,c])=>{ m+=`<div class="detail-row"><span class="detail-label">${l}</span><span class="detail-value" style="color:${c||'#e2e8f0'}">${v}</span></div>`;});
-  m+=`</div><div style="background:#0a0e17;border-radius:8px;padding:4px 14px;margin-bottom:12px">`;
-  [['Scheduled Date',fD(ds),'#3b82f6'],['Carrier',carrier||'Not assigned'],['Trailer Type',trailer||'Not set']].forEach(([l,v,c])=>{ m+=`<div class="detail-row"><span class="detail-label">${l}</span><span class="detail-value" style="color:${c||'#e2e8f0'}">${esc(v)}</span></div>`;});
-  m+=`</div>`;
-  // Delivered button
-  m+=`<div style="margin-top:16px;padding-top:14px;border-top:1px solid #1e293b">`;
-  if(del){
-    m+=`<div style="display:flex;align-items:center;justify-content:space-between"><div style="display:flex;align-items:center;gap:8px"><div style="width:28px;height:28px;border-radius:50%;background:#22c55e20;display:flex;align-items:center;justify-content:center;font-size:16px">✓</div><div><div style="font-size:13px;font-weight:700;color:#22c55e">This Load Delivered</div><div style="font-size:11px;color:#94a3b8">${loadQty} loads on ${fD(ds)}</div></div></div><button class="btn" style="color:#ca8a04;border-color:#ca8a04" onclick="undoDeliveryFromDetail(${id},${si},'${ds}')">↩ Undo</button></div>`;
-  } else {
-    m+=`<button onclick="deliverFromDetail(${id},${si},'${ds}')" style="width:100%;padding:10px 16px;border-radius:6px;border:none;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;font-weight:700;font-size:14px;cursor:pointer">✓ Mark as Delivered</button>`;
-  }
-  m+=`</div></div></div>`;
-  document.getElementById('app').insertAdjacentHTML('beforeend',m);
-};
-window.closeDetail=function(){const o=document.querySelector('.overlay');if(o)o.remove();};
-window.deliverFromDetail=function(id,si,ds){
-  const r=state.data.find(x=>x._id===id); if(!r) return;
-  const sched=state.schedules[id]; const se=sched&&si>=0?sched[si]:null;
-  markDelivered({...r,_si:si,_sL:se?se.loads:r.shipmentsRemaining,_sC:se?.carrier||'',_sT:se?.trailerType||''},ds);
-  closeDetail();
-};
-window.undoDeliveryFromDetail=function(id,si,ds){
-  const idx=state.completedLoads.findIndex(c=>c._id===id && c._entrySchedIdx===(si!=null?si:-1) && c._entryDate===(ds||''));
-  if(idx>=0) undoCompleted(idx);
-  else { state.deliveredEntries=state.deliveredEntries.filter(e=>!(e.id===id&&e.schedIdx===(si!=null?si:-1)&&e.date===(ds||''))); save(); }
-  closeDetail(); render();
-};
-// Scheduler
-window.openScheduler=function(id){
-  const r=state.data.find(x=>x._id===id); if(!r) return;
-  state.schedulerItem=r;
-  const ex=state.schedules[id]||[];
-  state.schedulerRows=ex.length?ex.map(s=>({...s})):[{date:'',loads:'',carrier:'',trailerType:''}];
-  renderScheduler();
-};
-function renderScheduler(){
-  const r=state.schedulerItem; if(!r) return;
-  const rows=state.schedulerRows;
-  const tot=rows.reduce((a,x)=>a+(parseInt(x.loads)||0),0);
-  const rem=r.shipmentsRemaining-tot; const over=tot>r.shipmentsRemaining;
-  let m=`<div class="overlay" onclick="closeScheduler()"><div class="modal" onclick="event.stopPropagation()">`;
-  m+=`<div style="display:flex;justify-content:space-between;margin-bottom:12px"><div><div style="font-size:18px;font-weight:700;color:#f8fafc">Schedule Loads</div><div style="font-size:13px;color:#94a3b8;margin-top:2px">${esc(r.orderNbr)} — ${esc(r.account)}</div></div><button onclick="closeScheduler()" style="background:none;border:none;color:#94a3b8;font-size:22px;cursor:pointer">✕</button></div>`;
-  m+=`<div style="display:flex;gap:16px;margin-bottom:14px;padding:10px 14px;background:#0a0e17;border-radius:8px"><div><div style="font-size:10px;color:#64748b">TOTAL</div><div style="font-size:20px;font-weight:700;color:#f8fafc">${r.shipmentsRemaining}</div></div><div><div style="font-size:10px;color:#64748b">ASSIGNED</div><div style="font-size:20px;font-weight:700;color:${over?'#dc2626':'#22c55e'}">${tot}</div></div><div><div style="font-size:10px;color:#64748b">UNASSIGNED</div><div style="font-size:20px;font-weight:700;color:${rem>0?'#ca8a04':rem===0?'#22c55e':'#dc2626'}">${rem}</div></div></div>`;
-  if(over) m+=`<div style="background:#dc262615;border:1px solid #dc262640;border-radius:6px;padding:8px 12px;margin-bottom:12px;color:#dc2626;font-weight:600;font-size:12px">⚠️ Over-allocated by ${tot-r.shipmentsRemaining}</div>`;
-  m+=`<div style="display:grid;grid-template-columns:130px 70px 130px 120px 36px;gap:8px;font-size:10px;color:#64748b;font-weight:600;text-transform:uppercase;margin-bottom:6px"><span>Date</span><span>Loads</span><span>Carrier</span><span>Trailer</span><span></span></div>`;
-  rows.forEach((row,i)=>{
-    m+=`<div style="display:grid;grid-template-columns:130px 70px 130px 120px 36px;gap:8px;margin-bottom:6px;align-items:center"><input type="date" value="${row.date||''}" onchange="schedRowUpd(${i},'date',this.value)"><input type="number" min="1" value="${row.loads||''}" placeholder="0" style="font-weight:700;color:#ca8a04" onchange="schedRowUpd(${i},'loads',this.value)"><input type="text" value="${esc(row.carrier||'')}" placeholder="Carrier" onchange="schedRowUpd(${i},'carrier',this.value)"><select onchange="schedRowUpd(${i},'trailerType',this.value)">${optionsHtml(TRAILERS,row.trailerType||'')}</select><button class="btn" style="color:#dc2626;border-color:#dc262640;padding:2px 8px;font-size:14px" onclick="schedRowDel(${i})">✕</button></div>`;
-  });
-  m+=`<div style="display:flex;justify-content:space-between;margin-top:12px"><button class="btn" style="color:#3b82f6;border-color:#3b82f6" onclick="schedRowAdd()">+ Add Date</button><div style="display:flex;gap:8px"><button class="btn" style="color:#dc2626;border-color:#dc2626" onclick="schedClear()">Clear</button><button class="btn btn-accent" ${over?'disabled style="opacity:.5;cursor:not-allowed"':''} onclick="schedSave()">Save Schedule</button></div></div>`;
-  m+=`</div></div>`;
-  const old=document.querySelector('.overlay'); if(old) old.remove();
-  document.getElementById('app').insertAdjacentHTML('beforeend',m);
-}
-window.closeScheduler=function(){state.schedulerItem=null;const o=document.querySelector('.overlay');if(o)o.remove();};
-window.schedRowUpd=function(i,f,v){state.schedulerRows[i][f]=v;renderScheduler();};
-window.schedRowDel=function(i){state.schedulerRows.splice(i,1);renderScheduler();};
-window.schedRowAdd=function(){state.schedulerRows.push({date:'',loads:'',carrier:'',trailerType:''});renderScheduler();};
-window.schedClear=function(){const r=state.schedulerItem;if(!r)return;delete state.schedules[r._id];save();closeScheduler();render();};
-window.schedSave=function(){
-  const r=state.schedulerItem;if(!r)return;
-  const valid=state.schedulerRows.filter(s=>s.date&&parseInt(s.loads)>0).map(s=>({date:s.date,loads:parseInt(s.loads),carrier:s.carrier||'',trailerType:s.trailerType||''}));
-  state.schedules[r._id]=valid;
-  if(valid.length) upd(r._id,'estDelivery',valid[0].date);
-  save(); closeScheduler(); render();
-};
-
-// Initial render (embedded fallback), then load shared CSV and refresh
-render();
-initDataFromCsv();
+document.getElementById('yr').textContent=new Date().getFullYear();
+sAC('orig-input','orig-suggestions',c=>{oC=c;upd()});
+sAC('dest-input','dest-suggestions',c=>{dC=c;upd()});
+sAC('bh-orig-input','bh-orig-suggestions',c=>{bOC=c;upd()});
+sAC('bh-dest-input','bh-dest-suggestions',c=>{bDC=c;upd()});
+document.getElementById('dh-input').addEventListener('input',upd);
+document.getElementById('fsc-input').addEventListener('input',upd);
+upd();
 </script>
 </body>
 </html>
